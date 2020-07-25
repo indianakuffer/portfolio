@@ -3,23 +3,36 @@ import { useHistory } from 'react-router-dom'
 import ScreenContainer from '../../shared/ScreenContainer/ScreenContainer'
 import styled from 'styled-components'
 import { useSpring, animated } from 'react-spring'
-import { easeCubicOut } from 'd3-ease'
+import { easeCubicInOut } from 'd3-ease'
 
 const Welcome = styled(animated.button)`
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: turquoise;
+  background-color: transparent;
   color: white;
   font-size: 30px;
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
   text-decoration: none;
   border: none;
   z-index: 10;
   &:focus {
     outline: none;
+  }
+  
+`
+const Blob = styled.div`
+  z-index: -5;
+  position: absolute;
+  background-image: url('${require('../../../images/blob.svg')}');
+  width: 300px;
+  height: 300px;
+  transition: filter 0.5s ease;
+  &:hover {
+    filter: ${props => props.growing ? 'unset' : 'brightness(0.9)'};
+  }
+  animation: 50s spin linear infinite;
+  @keyframes spin {
+    to {transform: rotate(360deg)}
   }
 `
 const Background = styled(animated.div)`
@@ -34,12 +47,12 @@ export default function Home() {
   let [nextPage, setNextPage] = useState(false)
   let [growing, setGrowing] = useState(false)
 
-  const orientation = window.innerHeight > window.innerWidth ? 'vh' : 'vw'
+  let orientation = window.innerHeight > window.innerWidth ? 'vh' : 'vw'
 
-  const props = useSpring({
-    width: growing ? `115${orientation}` : `0${orientation}`,
-    height: growing ? `115${orientation}` : `0${orientation}`,
-    config: { duration: 1300, easing: (t) => easeCubicOut(t) },
+  const springProps = useSpring({
+    width: growing ? `140${orientation}` : `0${orientation}`,
+    height: growing ? `140${orientation}` : `0${orientation}`,
+    config: { duration: 1300, easing: (t) => easeCubicInOut(t) },
     onRest: () => { if (growing) setNextPage(true) }
   })
 
@@ -50,8 +63,11 @@ export default function Home() {
 
   return (
     <ScreenContainer align='center' justify='center'>
-      <Welcome onClick={() => setGrowing(true)}>Welcome</Welcome>
-      <Background style={props}></Background>
+      <Welcome onClick={() => setGrowing(true)}>
+        <p>Welcome</p>
+        <Blob growing={growing} />
+      </Welcome>
+      <Background style={springProps}></Background>
     </ScreenContainer>
   )
 }
