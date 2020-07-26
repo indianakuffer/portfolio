@@ -1,73 +1,27 @@
-import React, { useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
 import ScreenContainer from '../../shared/ScreenContainer/ScreenContainer'
-import styled from 'styled-components'
-import { useSpring, animated } from 'react-spring'
-import { easeCubicInOut } from 'd3-ease'
-
-const Welcome = styled(animated.button)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: transparent;
-  color: white;
-  font-size: 30px;
-  text-decoration: none;
-  border: none;
-  z-index: 10;
-  &:focus {
-    outline: none;
-  }
-  
-`
-const Blob = styled.div`
-  z-index: -5;
-  position: absolute;
-  background-image: url('${require('../../../images/blob.svg')}');
-  width: 300px;
-  height: 300px;
-  transition: filter 0.5s ease;
-  &:hover {
-    filter: ${props => props.growing ? 'unset' : 'brightness(0.9)'};
-  }
-  animation: 50s spin linear infinite;
-  @keyframes spin {
-    to {transform: rotate(360deg)}
-  }
-`
-const Background = styled(animated.div)`
-  position: absolute;
-  z-index: 0;
-  border-radius: 50%;
-  background-color: turquoise;
-`
+import Window from '../../shared/Window/Window'
 
 export default function Home() {
-  const history = useHistory()
-  let [nextPage, setNextPage] = useState(false)
-  let [growing, setGrowing] = useState(false)
+  let [showWindow, setShowWindow] = useState(true)
+  let [mousePos, setMousePos] = useState({ x: null, y: null })
 
-  let orientation = window.innerHeight > window.innerWidth ? 'vh' : 'vw'
+  useEffect(() => {
+    window.addEventListener("mousemove", updateMousePosition)
+    return () => window.removeEventListener("mousemove", updateMousePosition)
+  }, [])
 
-  const springProps = useSpring({
-    width: growing ? `140${orientation}` : `0${orientation}`,
-    height: growing ? `140${orientation}` : `0${orientation}`,
-    config: { duration: 1300, easing: (t) => easeCubicInOut(t) },
-    onRest: () => { if (growing) setNextPage(true) }
-  })
-
-  if (nextPage) {
-    setNextPage(false)
-    history.push('/os')
+  const updateMousePosition = (e) => {
+    setMousePos({ x: e.clientX, y: e.clientY })
   }
 
   return (
-    <ScreenContainer align='center' justify='center'>
-      <Welcome onClick={() => setGrowing(true)}>
-        <p>Welcome</p>
-        <Blob growing={growing} />
-      </Welcome>
-      <Background style={springProps}></Background>
+    <ScreenContainer>
+      {showWindow &&
+        <Window title='Window Title' mousePos={mousePos} closeFunction={() => setShowWindow(false)}>
+          Etsy cardigan chillwave migas banjo four dollar toast. Flannel ramps pabst hammock PBR&B street art cred everyday carry activated charcoal deep v viral whatever retro vinyl blue bottle. Migas mlkshk asymmetrical shaman. Aesthetic tilde scenester 8-bit live-edge, raclette kale chips before they sold out godard lumbersexual umami poutine direct trade crucifix thundercats.
+        </Window>
+      }
     </ScreenContainer>
   )
 }
