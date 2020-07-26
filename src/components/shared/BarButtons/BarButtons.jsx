@@ -37,7 +37,7 @@ export default function BarButtons(props) {
     <BarButtonContainer>
       <CloseButton onClick={props.closeFunction}>x</CloseButton>
       <MinButton>-</MinButton>
-      <MaxButton>+</MaxButton>
+      <MaxButton onClick={props.maxSize}>+</MaxButton>
     </BarButtonContainer>
   )
 }
