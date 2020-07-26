@@ -20,6 +20,10 @@ export default function Home() {
       {showWindow &&
         <Window title='Window Title' mousePos={mousePos} closeFunction={() => setShowWindow(false)}>
           Etsy cardigan chillwave migas banjo four dollar toast. Flannel ramps pabst hammock PBR&B street art cred everyday carry activated charcoal deep v viral whatever retro vinyl blue bottle. Migas mlkshk asymmetrical shaman. Aesthetic tilde scenester 8-bit live-edge, raclette kale chips before they sold out godard lumbersexual umami poutine direct trade crucifix thundercats.
+          Etsy cardigan chillwave migas banjo four dollar toast. Flannel ramps pabst hammock PBR&B street art cred everyday carry activated charcoal deep v viral whatever retro vinyl blue bottle. Migas mlkshk asymmetrical shaman. Aesthetic tilde scenester 8-bit live-edge, raclette kale chips before they sold out godard lumbersexual umami poutine direct trade crucifix thundercats.
+          Etsy cardigan chillwave migas banjo four dollar toast. Flannel ramps pabst hammock PBR&B street art cred everyday carry activated charcoal deep v viral whatever retro vinyl blue bottle. Migas mlkshk asymmetrical shaman. Aesthetic tilde scenester 8-bit live-edge, raclette kale chips before they sold out godard lumbersexual umami poutine direct trade crucifix thundercats.
+          Etsy cardigan chillwave migas banjo four dollar toast. Flannel ramps pabst hammock PBR&B street art cred everyday carry activated charcoal deep v viral whatever retro vinyl blue bottle. Migas mlkshk asymmetrical shaman. Aesthetic tilde scenester 8-bit live-edge, raclette kale chips before they sold out godard lumbersexual umami poutine direct trade crucifix thundercats.
+          Etsy cardigan chillwave migas banjo four dollar toast. Flannel ramps pabst hammock PBR&B street art cred everyday carry activated charcoal deep v viral whatever retro vinyl blue bottle. Migas mlkshk asymmetrical shaman. Aesthetic tilde scenester 8-bit live-edge, raclette kale chips before they sold out godard lumbersexual umami poutine direct trade crucifix thundercats.
         </Window>
       }
     </ScreenContainer>

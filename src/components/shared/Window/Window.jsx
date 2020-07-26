@@ -11,14 +11,17 @@ const WindowContainer = styled.div`
   min-width: 60px;
   min-height: 25px;
   border-radius: 4px;
-  overflow: hidden;
+  overflow: auto;
   box-shadow: 2px 4px 8px rgba(0,0,0,0.25);
 `
 const TopBar = styled.div`
+  position: fixed;
   background-color: lightgrey;
+  border-radius: 4px 4px 0 0;
   display: flex;
-  width: 100%;
+  width: inherit;
   height: 20px;
+  z-index: 1;
 `
 const BarTitle = styled.div`
   flex-grow: 1;
@@ -29,7 +32,8 @@ const BarTitle = styled.div`
   }
 `
 const Contents = styled.div`
-
+  position: absolute;
+  top: 20px;
 `
 const ResizeBoth = styled.div`
   position: absolute;
