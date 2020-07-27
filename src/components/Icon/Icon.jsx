@@ -33,9 +33,7 @@ export default function Icon(props) {
   }
 
   const handleClick = () => {
-    if (clickedOnce) {
-      props.clickFunction()
-    }
+    if (clickedOnce) { props.openWindow(props.window) }
     setClickedOnce(true)
     setTimeout(() => setClickedOnce(false), 350)
   }

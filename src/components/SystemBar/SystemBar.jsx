@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import Clock from '../Clock/Clock'
 
 const Bar = styled.div`
   position: absolute;
@@ -21,6 +22,7 @@ const Left = styled.div`
   }
 `
 const Right = styled.div`
+  display: flex;
   &>* {
     margin: 0 7px;
   }
@@ -37,7 +39,7 @@ export default function SystemBar() {
         <div>Contact</div>
       </Left>
       <Right>
-        <div>Sun 6:07 PM</div>
+        <Clock />
       </Right>
     </Bar>
   )

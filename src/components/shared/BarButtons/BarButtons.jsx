@@ -6,6 +6,7 @@ const BarButtonContainer = styled.div`
   align-items: center;
   color: transparent;
   cursor: default;
+  filter: ${props => props.focused ? 'unset' : 'saturate(0)'};
   :hover {
     color: white;
   }
@@ -34,7 +35,7 @@ const MaxButton = styled.div`
 
 export default function BarButtons(props) {
   return (
-    <BarButtonContainer>
+    <BarButtonContainer focused={props.focused}>
       <CloseButton onClick={props.closeFunction}>x</CloseButton>
       <MinButton>-</MinButton>
       <MaxButton onClick={props.maxSize}>+</MaxButton>

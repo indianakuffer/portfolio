@@ -15,9 +15,9 @@ export default function Desktop(props) {
   return (
     <DesktopContainer>
       <SystemBar />
-      <Icon name='about' image={'images/icons/envelope.svg'} clickFunction={props.showWindow} pos={{ x: 30, y: 40 }} />
-      <Icon name='work' image={'images/icons/envelope.svg'} clickFunction={props.showWindow} pos={{ x: 30, y: 120 }} />
-      <Icon name='photography' image={'images/icons/envelope.svg'} clickFunction={props.showWindow} pos={{ x: 30, y: 200 }} />
+      <Icon name='about' window='About - Indiana Kuffer' image={'images/icons/envelope.svg'} pos={{ x: 30, y: 40 }} openWindow={props.openWindow} />
+      <Icon name='work' window='About - Someone Else' image={'images/icons/envelope.svg'} pos={{ x: 30, y: 120 }} openWindow={props.openWindow} />
+      <Icon name='photography' window='About - No One' image={'images/icons/envelope.svg'} pos={{ x: 30, y: 200 }} openWindow={props.openWindow} />
     </DesktopContainer>
   )
 }
