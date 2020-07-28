@@ -1,13 +1,10 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
 import BarButtons from '../BarButtons/BarButtons'
+import { useSpring, animated } from 'react-spring'
 
-const WindowContainer = styled.div`
+const WindowContainer = styled(animated.div)`
   position: absolute;
-  // top: ${props => props.yPos}px;
-  // left: ${props => props.xPos}px;
-  // height: ${props => props.height}px;
-  // width: ${props => props.width}px;
   min-width: 60px;
   min-height: 25px;
   border-radius: 4px;
@@ -76,6 +73,16 @@ export default function Window(props) {
   let [resizingHeight, setResizingHeight] = useState(false)
   let [movingWindow, setMovingWindow] = useState(false)
   let [clickedOnce, setClickedOnce] = useState(false)
+  // let [maxed, setMaxed] = useState(false)
+
+  // let time
+  // time = maxed ? 200 : 0
+  // const springProps = useSpring({
+  //   width: maxed ? window.innerWidth : size.x,
+  //   height: maxed ? window.innerHeight - 20 : size.y,
+  //   config: { duration: time }
+  // })
+
 
   if (movingWindow) {
     if (position.x !== props.mousePos.x - distance.x) {
@@ -94,13 +101,16 @@ export default function Window(props) {
   }
 
   const maxSize = () => {
-    if (size.x === window.innerWidth && size.y === window.innerHeight) {
+    if (size.x === window.innerWidth && size.y === window.innerHeight - 20) {
+      // if (maxed) {
       setSize({ x: window.innerWidth / 1.2, y: window.innerHeight / 1.2 })
       setPosition({ x: (window.innerWidth - window.innerWidth / 1.2) / 2, y: (window.innerHeight - window.innerHeight / 1.2) / 2 })
+      // setMaxed(false)
       return
     }
-    setSize({ x: window.innerWidth, y: window.innerHeight })
-    setPosition({ x: 0, y: 0 })
+    // setMaxed(true)
+    setSize({ x: window.innerWidth, y: window.innerHeight - 20 })
+    setPosition({ x: 0, y: 20 })
   }
 
   const topBarClick = () => {
