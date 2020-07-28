@@ -14,7 +14,7 @@ export default function Clock(props) {
 
   const day = new Intl.DateTimeFormat('en', { weekday: 'short' }).format(time)
   const hour = new Intl.DateTimeFormat('en', { hour: 'numeric' }).format(time)
-  const minute = new Intl.DateTimeFormat('en', { minute: 'numeric' }).format(time)
+  const minute = new Intl.DateTimeFormat('en', { minute: '2-digit' }).format(time)
 
   return (
     <div>

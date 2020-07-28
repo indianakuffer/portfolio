@@ -6,8 +6,6 @@ const IconContainer = styled.div`
   display: flex;
   align-items: center;
   flex-flow: column;
-  top: ${props => props.iconY}px;
-  left: ${props => props.iconX}px;
   width: 40px;
   user-select: none;
 `
@@ -27,6 +25,9 @@ const IconText = styled.input`
 export default function Icon(props) {
   let [text, setText] = useState(props.name)
   let [clickedOnce, setClickedOnce] = useState(false)
+  let [position, setPosition] = useState({ x: props.initialPos.x, y: props.initialPos.y })
+  let [mouseDown, setMouseDown] = useState(false)
+  let [distance, setDistance] = useState({ x: 0, y: 0 })
 
   const handleChange = (e) => {
     setText(e.target.value)
@@ -37,10 +38,15 @@ export default function Icon(props) {
     setClickedOnce(true)
     setTimeout(() => setClickedOnce(false), 350)
   }
+  if (mouseDown) {
+    if (position.x !== props.mousePos.x - distance.x) {
+      setPosition({ x: props.mousePos.x - distance.x, y: props.mousePos.y - distance.y })
+    }
+  }
 
   return (
-    <IconContainer iconX={props.pos.x} iconY={props.pos.y} >
-      <IconImage src={require('../../' + props.image)} onClick={handleClick} />
+    <IconContainer style={{ 'top': position.y, 'left': position.x }} onMouseDown={() => { setMouseDown(true); setDistance({ x: props.mousePos.x - position.x, y: props.mousePos.y - position.y }) }} onMouseUp={() => setMouseDown(false)}>
+      <IconImage src={require('../../' + props.image)} onClick={handleClick} draggable='false' />
       <IconText value={text} onChange={handleChange} width={text.length}></IconText>
     </IconContainer>
   )

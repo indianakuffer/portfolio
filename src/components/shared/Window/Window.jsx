@@ -71,7 +71,7 @@ const ResizeWidth = styled.div`
 export default function Window(props) {
   let [size, setSize] = useState(props.size)
   let [position, setPosition] = useState({ x: window.innerWidth / 2 - props.size.x / 2, y: window.innerHeight / 2 - props.size.y / 2 })
-  let [distance, setdistance] = useState({ x: 0, y: 0 })
+  let [distance, setDistance] = useState({ x: 0, y: 0 })
   let [resizingWidth, setResizingWidth] = useState(false)
   let [resizingHeight, setResizingHeight] = useState(false)
   let [movingWindow, setMovingWindow] = useState(false)
@@ -120,7 +120,7 @@ export default function Window(props) {
         <BarTitle
           onMouseDown={() => {
             setMovingWindow(true)
-            setdistance({ x: props.mousePos.x - position.x, y: props.mousePos.y - position.y })
+            setDistance({ x: props.mousePos.x - position.x, y: props.mousePos.y - position.y })
           }}
           onMouseUp={() => setMovingWindow(false)}>
           <span>{props.title}</span>
@@ -133,7 +133,7 @@ export default function Window(props) {
         onMouseDown={() => {
           setResizingHeight(true)
           setResizingWidth(true)
-          setdistance({ x: props.mousePos.x - size.x, y: props.mousePos.y - size.y })
+          setDistance({ x: props.mousePos.x - size.x, y: props.mousePos.y - size.y })
         }}
         onMouseUp={() => {
           setResizingHeight(false)
@@ -143,14 +143,14 @@ export default function Window(props) {
       <ResizeWidth
         onMouseDown={() => {
           setResizingWidth(true)
-          setdistance({ x: props.mousePos.x - size.x, y: props.mousePos.y - size.y })
+          setDistance({ x: props.mousePos.x - size.x, y: props.mousePos.y - size.y })
         }}
         onMouseUp={() => setResizingWidth(false)}
       />
       <ResizeHeight
         onMouseDown={() => {
           setResizingHeight(true)
-          setdistance({ x: props.mousePos.x - size.x, y: props.mousePos.y - size.y })
+          setDistance({ x: props.mousePos.x - size.x, y: props.mousePos.y - size.y })
         }}
         onMouseUp={() => setResizingHeight(false)}
       />

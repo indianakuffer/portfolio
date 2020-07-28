@@ -15,9 +15,9 @@ export default function Desktop(props) {
   return (
     <DesktopContainer onClick={() => props.focusWindow()}>
       <SystemBar />
-      <Icon name='about' window='About - Indiana Kuffer' image={'images/icons/envelope.svg'} pos={{ x: 30, y: 40 }} openWindow={props.openWindow} />
-      <Icon name='work' window='About - Someone Else' image={'images/icons/envelope.svg'} pos={{ x: 30, y: 120 }} openWindow={props.openWindow} />
-      <Icon name='photography' window='About - No One' image={'images/icons/envelope.svg'} pos={{ x: 30, y: 200 }} openWindow={props.openWindow} />
+      <Icon name='about' window='About - Indiana Kuffer' image={'images/icons/envelope.svg'} initialPos={{ x: 30, y: 40 }} openWindow={props.openWindow} mousePos={props.mousePos} />
+      <Icon name='work' window='About - Someone Else' image={'images/icons/envelope.svg'} initialPos={{ x: 30, y: 120 }} openWindow={props.openWindow} mousePos={props.mousePos} />
+      <Icon name='photography' window='About - No One' image={'images/icons/envelope.svg'} initialPos={{ x: 30, y: 200 }} openWindow={props.openWindow} mousePos={props.mousePos} />
     </DesktopContainer>
   )
 }

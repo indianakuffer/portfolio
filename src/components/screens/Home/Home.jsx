@@ -66,7 +66,7 @@ export default function Home() {
 
   return (
     <ScreenContainer>
-      <Desktop openWindow={openWindow} focusWindow={focusWindow} />
+      <Desktop openWindow={openWindow} focusWindow={focusWindow} mousePos={mousePos} />
       {Object.keys(windowList).map(window => {
         const current = windowList[window]
         if (!current.open) return <></>
