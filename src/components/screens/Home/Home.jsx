@@ -6,6 +6,7 @@ import About from '../../apps/About/About'
 
 export default function Home() {
   let [mousePos, setMousePos] = useState({ x: null, y: null })
+  let [count, forceRerender] = useState(0)
   let [windowList, setWindowList] = useState({
     'About - Indiana Kuffer': {
       size: { x: window.innerWidth / 1.5, y: window.innerHeight / 1.5 },
@@ -23,7 +24,7 @@ export default function Home() {
       size: { x: window.innerWidth / 1.5, y: window.innerHeight / 1.5 },
       app: About,
       open: false,
-      focused: true
+      focused: false
     },
   })
 
@@ -37,11 +38,18 @@ export default function Home() {
   }
 
   const focusWindow = (title) => {
-    let { [title]: current, ...rest } = windowList
+    if (!title) {
+      Object.keys(windowList).forEach(key => {
+        windowList[key].focused = false
+      })
+      forceRerender(count + 1)
+      return
+    }
+    let { [title]: chosen, ...rest } = windowList
     Object.keys(rest).map(window => {
       rest[window].focused = false
     })
-    setWindowList({ ...rest, [title]: { ...current, focused: true } })
+    setWindowList({ ...rest, [title]: { ...chosen, focused: true } })
   }
 
   const closeWindow = (title) => {
@@ -58,7 +66,7 @@ export default function Home() {
 
   return (
     <ScreenContainer>
-      <Desktop openWindow={openWindow} />
+      <Desktop openWindow={openWindow} focusWindow={focusWindow} />
       {Object.keys(windowList).map(window => {
         const current = windowList[window]
         if (!current.open) return <></>

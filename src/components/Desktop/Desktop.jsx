@@ -13,7 +13,7 @@ const DesktopContainer = styled.div`
 
 export default function Desktop(props) {
   return (
-    <DesktopContainer>
+    <DesktopContainer onClick={() => props.focusWindow()}>
       <SystemBar />
       <Icon name='about' window='About - Indiana Kuffer' image={'images/icons/envelope.svg'} pos={{ x: 30, y: 40 }} openWindow={props.openWindow} />
       <Icon name='work' window='About - Someone Else' image={'images/icons/envelope.svg'} pos={{ x: 30, y: 120 }} openWindow={props.openWindow} />
