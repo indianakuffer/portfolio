@@ -11,11 +11,18 @@ const IconContainer = styled.div`
 `
 const IconImage = styled.img`
   display: block;
+  box-sizing: content-box;
   width: 40px;
   height: 40px;
+  border-radius: 4px;
+  padding: 3px 5px;
+  background-color: ${props => props.focused ? 'rgba(255,255,255,0.1)' : 'transparent'};
+  // border: ${props => props.focused ? '1px solid blue' : 'none'};
 `
 const IconText = styled.input`
-  background-color: transparent;
+  background-color: ${props => props.focused ? '#3258CB' : 'transparent'};
+  padding: 1px;
+  border-radius: 3px;
   border: none;
   color: white;
   font-weight: bold;
@@ -34,6 +41,7 @@ export default function Icon(props) {
   }
 
   const handleClick = () => {
+    props.focusIcon(props.name)
     if (clickedOnce) { props.openWindow(props.window) }
     setClickedOnce(true)
     setTimeout(() => setClickedOnce(false), 350)
@@ -45,9 +53,16 @@ export default function Icon(props) {
   }
 
   return (
-    <IconContainer style={{ 'top': position.y, 'left': position.x }} onMouseDown={() => { setMouseDown(true); setDistance({ x: props.mousePos.x - position.x, y: props.mousePos.y - position.y }) }} onMouseUp={() => setMouseDown(false)}>
-      <IconImage src={require('../../' + props.image)} onClick={handleClick} draggable='false' />
-      <IconText value={text} onChange={handleChange} width={text.length}></IconText>
+    <IconContainer
+      style={{ 'top': position.y, 'left': position.x }}
+      onMouseDown={() => {
+        setMouseDown(true)
+        setDistance({ x: props.mousePos.x - position.x, y: props.mousePos.y - position.y })
+      }}
+      onMouseUp={() => setMouseDown(false)}
+      onClick={e => e.stopPropagation()}>
+      <IconImage src={require('../../' + props.image)} onClick={handleClick} draggable='false' focused={props.focused} />
+      <IconText value={text} onChange={handleChange} width={text.length} focused={props.focused}></IconText>
     </IconContainer>
   )
 }

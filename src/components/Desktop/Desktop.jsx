@@ -12,18 +12,26 @@ const DesktopContainer = styled.div`
 `
 
 export default function Desktop(props) {
+  let [count, forceRerender] = useState(0)
   let [focusedList, setFocusedList] = useState({
     about: false,
     work: false,
     photography: false
   })
 
+  const focusIcon = (name) => {
+    Object.keys(focusedList).map(key => {
+      key === name ? focusedList[key] = true : focusedList[key] = false
+    })
+    forceRerender(count + 1)
+  }
+
   return (
-    <DesktopContainer onClick={() => props.focusWindow()}>
+    <DesktopContainer onClick={() => { props.focusWindow(); focusIcon(); }}>
       <SystemBar />
-      <Icon name='about' window='About - Indiana Kuffer' image={'images/icons/envelope.svg'} initialPos={{ x: 30, y: 40 }} openWindow={props.openWindow} mousePos={props.mousePos} />
-      <Icon name='work' window='About - Someone Else' image={'images/icons/envelope.svg'} initialPos={{ x: 30, y: 120 }} openWindow={props.openWindow} mousePos={props.mousePos} />
-      <Icon name='photography' window='About - No One' image={'images/icons/envelope.svg'} initialPos={{ x: 30, y: 200 }} openWindow={props.openWindow} mousePos={props.mousePos} />
+      <Icon name='about' window='About - Indiana Kuffer' image={'images/icons/envelope.svg'} initialPos={{ x: 30, y: 40 }} focused={focusedList.about} focusIcon={focusIcon} openWindow={props.openWindow} mousePos={props.mousePos} />
+      <Icon name='work' window='About - Someone Else' image={'images/icons/envelope.svg'} initialPos={{ x: 30, y: 120 }} focused={focusedList.work} focusIcon={focusIcon} openWindow={props.openWindow} mousePos={props.mousePos} />
+      <Icon name='photography' window='About - No One' image={'images/icons/envelope.svg'} initialPos={{ x: 30, y: 200 }} focused={focusedList.photography} focusIcon={focusIcon} openWindow={props.openWindow} mousePos={props.mousePos} />
     </DesktopContainer>
   )
 }
