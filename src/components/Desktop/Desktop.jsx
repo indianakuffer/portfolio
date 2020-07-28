@@ -1,4 +1,4 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import Icon from '../Icon/Icon'
 import SystemBar from '../SystemBar/SystemBar'
@@ -12,6 +12,12 @@ const DesktopContainer = styled.div`
 `
 
 export default function Desktop(props) {
+  let [focusedList, setFocusedList] = useState({
+    about: false,
+    work: false,
+    photography: false
+  })
+
   return (
     <DesktopContainer onClick={() => props.focusWindow()}>
       <SystemBar />

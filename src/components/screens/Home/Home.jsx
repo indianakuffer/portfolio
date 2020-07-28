@@ -37,7 +37,18 @@ export default function Home() {
     setMousePos({ x: e.clientX, y: e.clientY })
   }
 
-  const focusWindow = (title) => {
+  const openWindow = (title) => {
+    focusWindow(title)
+    const { [title]: current, ...rest } = windowList
+    setWindowList({ ...rest, [title]: { ...current, open: true, focused: true } })
+  }
+
+  const closeWindow = (title) => {
+    const { [title]: current, ...rest } = windowList
+    setWindowList({ ...rest, [title]: { ...current, open: false } })
+  }
+
+  function focusWindow(title) {
     if (!title) {
       Object.keys(windowList).forEach(key => {
         windowList[key].focused = false
@@ -50,17 +61,6 @@ export default function Home() {
       rest[window].focused = false
     })
     setWindowList({ ...rest, [title]: { ...chosen, focused: true } })
-  }
-
-  const closeWindow = (title) => {
-    const { [title]: current, ...rest } = windowList
-    setWindowList({ ...rest, [title]: { ...current, open: false } })
-  }
-
-  const openWindow = (title) => {
-    focusWindow(title)
-    const { [title]: current, ...rest } = windowList
-    setWindowList({ ...rest, [title]: { ...current, open: true, focused: true } })
   }
 
 
