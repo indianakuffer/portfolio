@@ -2,6 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import BarButtons from '../BarButtons/BarButtons'
 import { useSpring, animated } from 'react-spring'
+import { easeCubicInOut, easeBackOut, easeBackIn } from 'd3-ease'
 
 const WindowContainer = styled(animated.div)`
   position: absolute;
@@ -73,15 +74,12 @@ export default function Window(props) {
   let [resizingHeight, setResizingHeight] = useState(false)
   let [movingWindow, setMovingWindow] = useState(false)
   let [clickedOnce, setClickedOnce] = useState(false)
-  // let [maxed, setMaxed] = useState(false)
 
-  // let time
-  // time = maxed ? 200 : 0
-  // const springProps = useSpring({
-  //   width: maxed ? window.innerWidth : size.x,
-  //   height: maxed ? window.innerHeight - 20 : size.y,
-  //   config: { duration: time }
-  // })
+  const springProps = useSpring({
+    from: { transform: 'scale(0)' },
+    to: { transform: 'scale(1)' },
+    config: { clamp: false, friction: 24, tension: 300, easing: (t) => easeBackOut(t) }
+  })
 
 
   if (movingWindow) {
@@ -102,13 +100,10 @@ export default function Window(props) {
 
   const maxSize = () => {
     if (size.x === window.innerWidth && size.y === window.innerHeight - 20) {
-      // if (maxed) {
       setSize({ x: window.innerWidth / 1.2, y: window.innerHeight / 1.2 })
       setPosition({ x: (window.innerWidth - window.innerWidth / 1.2) / 2, y: (window.innerHeight - window.innerHeight / 1.2) / 2 })
-      // setMaxed(false)
       return
     }
-    // setMaxed(true)
     setSize({ x: window.innerWidth, y: window.innerHeight - 20 })
     setPosition({ x: 0, y: 20 })
   }
@@ -124,7 +119,7 @@ export default function Window(props) {
   }
 
   return (
-    <WindowContainer style={{ 'height': size.y, 'width': size.x, 'top': position.y, 'left': position.x }} focused={props.focused} onMouseDown={handleFocus}>
+    <WindowContainer style={{ 'height': size.y, 'width': size.x, 'top': position.y, 'left': position.x, ...springProps }} focused={props.focused} onMouseDown={handleFocus}>
       <TopBar onClick={topBarClick}>
         <BarButtons closeFunction={props.closeFunction} maxSize={maxSize} focused={props.focused} />
         <BarTitle
