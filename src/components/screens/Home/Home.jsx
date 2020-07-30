@@ -3,25 +3,26 @@ import ScreenContainer from '../../shared/ScreenContainer/ScreenContainer'
 import Window from '../../shared/Window/Window'
 import Desktop from '../../Desktop/Desktop'
 import About from '../../apps/About/About'
+import Work from '../../apps/Work/Work'
 
 export default function Home() {
   let [mousePos, setMousePos] = useState({ x: null, y: null })
   let [count, forceRerender] = useState(0)
   let [windowList, setWindowList] = useState({
     'About - Indiana Kuffer': {
-      size: { x: window.innerWidth / 1.5, y: window.innerHeight / 1.5 },
+      size: { x: window.innerWidth / 1.2, y: window.innerHeight / 1.2 },
       app: About,
       open: false,
       focused: false
     },
-    'About - Someone Else': {
-      size: { x: window.innerWidth / 1.5, y: window.innerHeight / 1.5 },
-      app: About,
+    'Work': {
+      size: { x: window.innerWidth / 1.2, y: window.innerHeight / 1.2 },
+      app: Work,
       open: false,
       focused: false
     },
     'About - No One': {
-      size: { x: window.innerWidth / 1.5, y: window.innerHeight / 1.5 },
+      size: { x: window.innerWidth / 1.2, y: window.innerHeight / 1.2 },
       app: About,
       open: false,
       focused: false

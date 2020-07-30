@@ -2,7 +2,7 @@ import React, { useState } from 'react'
 import styled from 'styled-components'
 import BarButtons from '../BarButtons/BarButtons'
 import { useSpring, animated } from 'react-spring'
-import { easeCubicInOut, easeBackOut, easeBackIn } from 'd3-ease'
+import { easeBackOut } from 'd3-ease'
 
 const WindowContainer = styled(animated.div)`
   position: absolute;
@@ -11,7 +11,8 @@ const WindowContainer = styled(animated.div)`
   border-radius: 4px;
   box-shadow: 2px 4px 8px rgba(0,0,0,0.25);
   overflow: hidden;
-  background-color: ${props => props.focused ? 'white' : 'rgba(255,255,255,0.85)'};
+  opacity: ${props => props.focused ? 1 : 0.85};
+  background-color: white;
   backdrop-filter: ${props => props.focused ? 'unset' : 'blur(8px)'};
   z-index: ${props => props.focused ? '1' : '0'};
 `
@@ -30,14 +31,17 @@ const BarTitle = styled.div`
   flex-grow: 1;
   text-align: center;
   overflow: hidden;
-  padding-right: 10%;
+  padding-right: 7%;
   span {
     white-space: nowrap;
   }
 `
 const Contents = styled.div`
   position: absolute;
+  display: flex;
   max-height: calc(100% - 20px);
+  width: 100%;
+  height: 100%;
   top: 20px;
   overflow: auto;
   user-select: ${props => props.resizing || !props.focused ? 'none' : 'unset'};
@@ -75,12 +79,11 @@ export default function Window(props) {
   let [movingWindow, setMovingWindow] = useState(false)
   let [clickedOnce, setClickedOnce] = useState(false)
 
-  const springProps = useSpring({
+  const openSpring = useSpring({
     from: { transform: 'scale(0)' },
     to: { transform: 'scale(1)' },
     config: { clamp: false, friction: 24, tension: 300, easing: (t) => easeBackOut(t) }
   })
-
 
   if (movingWindow) {
     if (position.x !== props.mousePos.x - distance.x) {
@@ -119,7 +122,7 @@ export default function Window(props) {
   }
 
   return (
-    <WindowContainer style={{ 'height': size.y, 'width': size.x, 'top': position.y, 'left': position.x, ...springProps }} focused={props.focused} onMouseDown={handleFocus}>
+    <WindowContainer style={{ 'height': size.y, 'width': size.x, 'top': position.y, 'left': position.x, ...openSpring }} focused={props.focused} onMouseDown={handleFocus}>
       <TopBar onClick={topBarClick}>
         <BarButtons closeFunction={props.closeFunction} maxSize={maxSize} focused={props.focused} />
         <BarTitle
