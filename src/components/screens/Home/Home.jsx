@@ -20,13 +20,7 @@ export default function Home() {
       app: Work,
       open: false,
       focused: false
-    },
-    'About - No One': {
-      size: { x: window.innerWidth / 1.2, y: window.innerHeight / 1.2 },
-      app: About,
-      open: false,
-      focused: false
-    },
+    }
   })
 
   useEffect(() => {

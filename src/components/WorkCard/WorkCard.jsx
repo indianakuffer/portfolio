@@ -79,7 +79,7 @@ export default function WorkCard(props) {
       {props.github && <Github href={props.github} target='_blank' rel='noopener noreferrer'>See on GitHub.</Github>}
       <TechContainer>
         {props.techs && props.techs.map(tech => {
-          return <TechIcon src={require(`../../images/icons/${tech}.svg`)} title={tech} />
+          return <TechIcon key={`${props.title}-${props.tech}`} src={require(`../../images/icons/${tech}.svg`)} title={tech} />
         })}
       </TechContainer>
     </CardContainer>

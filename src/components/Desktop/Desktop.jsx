@@ -16,7 +16,9 @@ export default function Desktop(props) {
   let [focusedList, setFocusedList] = useState({
     about: false,
     work: false,
-    photography: false
+    photography: false,
+    resume: false,
+    games: false,
   })
 
   const focusIcon = (name) => {
@@ -29,9 +31,11 @@ export default function Desktop(props) {
   return (
     <DesktopContainer onClick={() => { props.focusWindow(); focusIcon(); }}>
       <SystemBar />
-      <Icon name='about' window='About - Indiana Kuffer' image={'images/icons/mongodb.svg'} initialPos={{ x: 30, y: 40 }} focused={focusedList.about} focusIcon={focusIcon} openWindow={props.openWindow} mousePos={props.mousePos} />
-      <Icon name='work' window='Work' image={'images/icons/javascript.svg'} initialPos={{ x: 30, y: 120 }} focused={focusedList.work} focusIcon={focusIcon} openWindow={props.openWindow} mousePos={props.mousePos} />
-      <Icon name='photography' window='About - No One' image={'images/icons/camera.svg'} initialPos={{ x: 30, y: 200 }} focused={focusedList.photography} focusIcon={focusIcon} openWindow={props.openWindow} mousePos={props.mousePos} />
+      <Icon name='about' window='About - Indiana Kuffer' image={'images/icons/astronaut.svg'} initialPos={{ x: 30, y: 40 }} focused={focusedList.about} focusIcon={focusIcon} openWindow={props.openWindow} mousePos={props.mousePos} />
+      <Icon name='work' window='Work' image={'images/icons/work.svg'} initialPos={{ x: 30, y: 120 }} focused={focusedList.work} focusIcon={focusIcon} openWindow={props.openWindow} mousePos={props.mousePos} />
+      <Icon name='photography' window='Work' image={'images/icons/camera.svg'} initialPos={{ x: 30, y: 200 }} focused={focusedList.photography} focusIcon={focusIcon} openWindow={props.openWindow} mousePos={props.mousePos} />
+      <Icon name='resume' window='Work' image={'images/icons/resume.svg'} initialPos={{ x: 30, y: 280 }} focused={focusedList.resume} focusIcon={focusIcon} openWindow={props.openWindow} mousePos={props.mousePos} />
+      <Icon name='games' window='Work' image={'images/icons/gameboy.svg'} initialPos={{ x: 30, y: 360 }} focused={focusedList.games} focusIcon={focusIcon} openWindow={props.openWindow} mousePos={props.mousePos} />
     </DesktopContainer>
   )
 }
