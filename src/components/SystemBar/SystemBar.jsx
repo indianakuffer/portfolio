@@ -1,6 +1,7 @@
-import React from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import Clock from '../Clock/Clock'
+import DropDown from '../shared/Dropdown/DropDown'
 
 const Bar = styled.div`
   position: absolute;
@@ -27,13 +28,25 @@ const Right = styled.div`
     margin: 0 7px;
   }
 `
+const Option = styled.div`
+  position: relative;
+`
 
 
 export default function SystemBar() {
+  let [showNameMenu, setShowNameMenu] = useState(false)
   return (
     <Bar>
       <Left>
-        <div>Indiana Kuffer</div>
+        <Option>
+          <div onClick={() => setShowNameMenu(!showNameMenu)}>Indiana Kuffer</div>
+          <DropDown showState={showNameMenu}>
+            <div>About</div>
+            <div>Work</div>
+            <div>Photography</div>
+            <div>Contact</div>
+          </DropDown>
+        </Option>
         <div>About</div>
         <div>Work</div>
         <div>Contact</div>
