@@ -12,6 +12,8 @@ const Welcome = styled(animated.button)`
   background-color: transparent;
   color: white;
   font-size: 30px;
+  font-family: 'Playfair Display', serif;
+  font-weight: 600;
   text-decoration: none;
   border: none;
   z-index: 10;

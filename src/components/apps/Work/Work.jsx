@@ -67,6 +67,14 @@ export default function Work() {
           techs={['express', 'mongodb', 'nodejs', 'react', 'heroku', 'd3js', 'styled-components']}
           github='https://github.com/indianakuffer/waste-watchers'
         />
+        <WorkCard
+          title='Portfolio'
+          image='https://i.imgur.com/AMJAiAt.png'
+          url='http://www.indianakuffer.com'
+          text={`A showcase for all my work, lovingly made. Enjoy!`}
+          techs={['nodejs', 'react', 'styled-components']}
+          github='https://github.com/indianakuffer/portfolio'
+        />
       </ProjectGrid>
       <Divider />
       <Header>Skills</Header>
