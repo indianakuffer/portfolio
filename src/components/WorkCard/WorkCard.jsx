@@ -50,11 +50,12 @@ const Image = styled.a`
   background-position: center;
   transition: filter 0.3s ease;
   &:hover {
-    filter: brightness(0.5);
+    filter: brightness(0.4);
   }
 `
 const Text = styled.div`
   padding: 0 15px;
+  color: #272946;
   margin-top: 25px;
   font-size: 16px;
   line-height: 1.6;
@@ -62,6 +63,7 @@ const Text = styled.div`
 `
 const TechIcon = styled.img`
   height: 38px;
+  margin: 0 2px;
 `
 const TechContainer = styled.div`
   display: flex;
@@ -99,6 +101,9 @@ export default function WorkCard(props) {
       {props.github && <Github href={props.github} target='_blank' rel='noopener noreferrer'>See on GitHub.</Github>}
       <TechContainer>
         {props.techs && props.techs.map(tech => {
+          if (tech.includes('.png')) {
+            return <TechIcon key={`${props.title}-${tech}`} src={require(`../../images/icons/${tech}`)} title={tech} />
+          }
           return <TechIcon key={`${props.title}-${tech}`} src={require(`../../images/icons/${tech}.svg`)} title={tech} />
         })}
       </TechContainer>

@@ -1,6 +1,7 @@
 import React from 'react'
 import styled from 'styled-components'
 import WorkCard from '../../WorkCard/WorkCard'
+import Skill from '../../shared/Skill/Skill'
 
 const WorkContainer = styled.div`
   background-color: #a8bacc;
@@ -30,6 +31,31 @@ const Divider = styled.div`
   background-color: rgba(0,0,0,0.3);
   margin: 0 auto;
 `
+const SkillsContainer = styled.div`
+  display: flex;
+  flex-flow: row wrap;
+  justify-content: center;
+  background-color: white;
+  border-radius: 15px;
+  padding: 0 30px;
+  margin-bottom: 50px;
+`
+const SkillCategory = styled.div`
+  display: flex;
+  flex-flow: column;
+  border-left: 1px solid lightgrey;
+  border-right: 1px solid lightgrey;
+  margin: 30px 0;
+  padding: 0 30px;
+  min-width: 280px;
+  h1 {
+    font-size: 40px;
+    font-family: 'Playfair Display', times, serif;
+    font-weight: 500;
+    margin: 0 0 25px 0;
+  }
+`
+
 
 export default function Work() {
   return (
@@ -72,12 +98,44 @@ export default function Work() {
           image='https://i.imgur.com/AMJAiAt.png'
           url='http://www.indianakuffer.com'
           text={`A showcase for all my work, lovingly made. Enjoy!`}
-          techs={['nodejs', 'react', 'styled-components']}
+          techs={['nodejs', 'react', 'react-spring.png', 'styled-components']}
           github='https://github.com/indianakuffer/portfolio'
         />
       </ProjectGrid>
       <Divider />
       <Header>Skills</Header>
+      <SkillsContainer>
+        <SkillCategory>
+          <h1>Front-end</h1>
+          <Skill name='React' imgPath='images/icons/react.svg' />
+          <Skill name='React-Spring' imgPath='images/icons/react-spring.png' />
+          <Skill name='HTML' imgPath='images/icons/html.svg' />
+          <Skill name='CSS' imgPath='images/icons/css3.svg' />
+          <Skill name='D3' imgPath='images/icons/d3js.svg' />
+          <Skill name='Javascript' imgPath='images/icons/javascript.svg' />
+          <Skill name='SASS' imgPath='images/icons/sass.svg' />
+          <Skill name='Styled Components' imgPath='images/icons/styled-components.svg' />
+        </SkillCategory>
+        <SkillCategory>
+          <h1>Back-end</h1>
+          <Skill name='Postgresql' imgPath='images/icons/postgresql.svg' />
+          <Skill name='Express' imgPath='images/icons/express.svg' />
+          <Skill name='Heroku' imgPath='images/icons/heroku.svg' />
+          <Skill name='MongoDB' imgPath='images/icons/mongodb.svg' />
+          <Skill name='Ruby' imgPath='images/icons/ruby.svg' />
+          <Skill name='Rails' imgPath='images/icons/rails.svg' />
+        </SkillCategory>
+        <SkillCategory>
+          <h1>Misc.</h1>
+          <Skill name='GitHub' imgPath='images/icons/github.svg' />
+          <Skill name='Wordpress' imgPath='images/icons/wordpress.svg' />
+          <Skill name='NodeJS' imgPath='images/icons/nodejs.svg' />
+          <Skill name='Lightroom' imgPath='images/icons/lightroom.svg' />
+          <Skill name='Photoshop' imgPath='images/icons/photoshop.svg' />
+          <Skill name='Illustrator' imgPath='images/icons/illustrator.svg' />
+          <Skill name='Premiere Pro' imgPath='images/icons/premiere-pro.svg' />
+        </SkillCategory>
+      </SkillsContainer>
     </WorkContainer>
   )
 }
