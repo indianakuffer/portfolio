@@ -15,9 +15,9 @@ const Text = styled.div`
 export default function Battery(props) {
   return (
     <Container onClick={props.onClick}>
-      <div style={{ 'display': 'flex', 'align-items': 'center' }}>
+      <div style={{ 'display': 'flex', 'alignItems': 'center' }}>
         <Text>7%</Text>
-        <img src={require('../../images/icons/battery.svg')} />
+        <img src={require('../../images/icons/battery.svg')} alt='batteryicon' />
       </div>
       {props.children}
     </Container>

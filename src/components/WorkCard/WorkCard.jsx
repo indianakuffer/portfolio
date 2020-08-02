@@ -19,33 +19,49 @@ const CardContainer = styled.div`
     box-shadow: 4px 9px 17px rgba(0,0,0,0.16);
   }
 `
-const Title = styled.div`
-  font-weight: bold;
-  font-size: 26px;
-  margin: 16px 0;
+const StyledDiv = styled.div`
+  display: flex;
+  position: relative;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 40%;
+  &:hover {
+    span {opacity: 1};
+  }
+  span {
+    opacity: 0;
+    transition: opacity 0.3s ease;
+    color: white;
+    font-weight: bold;
+    font-size: 40px;
+    font-family: 'Playfair Display', times, serif;
+    z-index: 1;
+    pointer-events: none;
+  }
 `
 const Image = styled.a`
   width: 100%;
-  height: 40%;
+  height: 100%;
+  position: absolute;
   background-image: url('${props => props.src}');
   background-size: cover;
   background-repeat: no-repeat;
   background-position: center;
+  transition: filter 0.3s ease;
   &:hover {
-    opacity: 0.9;
+    filter: brightness(0.5);
   }
 `
 const Text = styled.div`
-  font-size: 18px;
   padding: 0 15px;
+  margin-top: 25px;
+  font-size: 16px;
+  line-height: 1.6;
+  letter-spacing: 0.03rem;
 `
 const TechIcon = styled.img`
-  height: 50px;
-  // filter: saturate(0.6);
-  // transition: filter 0.4s ease;
-  &:hover {
-    // filter: saturate(1);
-  }
+  height: 38px;
 `
 const TechContainer = styled.div`
   display: flex;
@@ -66,20 +82,24 @@ const Github = styled.a`
   }
 `
 
+
 export default function WorkCard(props) {
 
   return (
     <CardContainer>
-      <Image href={props.url} target='_blank' rel='noopener noreferrer' src={props.image}>
-      </Image>
-      <Title>{props.title}</Title>
+      <StyledDiv src={props.image}>
+        <Image src={props.image} href={props.url} target='_blank' rel='noopener noreferrer'></Image>
+        <span>{props.title}</span>
+      </StyledDiv>
+      {/* <Image href={props.url} target='_blank' rel='noopener noreferrer' src={props.image}></Image> */}
+      {/* <Title>{props.title}</Title> */}
       <Text>
         {props.text}
       </Text>
       {props.github && <Github href={props.github} target='_blank' rel='noopener noreferrer'>See on GitHub.</Github>}
       <TechContainer>
         {props.techs && props.techs.map(tech => {
-          return <TechIcon key={`${props.title}-${props.tech}`} src={require(`../../images/icons/${tech}.svg`)} title={tech} />
+          return <TechIcon key={`${props.title}-${tech}`} src={require(`../../images/icons/${tech}.svg`)} title={tech} />
         })}
       </TechContainer>
     </CardContainer>

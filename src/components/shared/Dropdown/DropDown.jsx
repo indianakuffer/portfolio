@@ -43,7 +43,7 @@ export default function DropDown(props) {
   })
 
   return (
-    <DropdownContainer showState={props.showState} style={{ ...expand }}>
+    <DropdownContainer style={{ ...expand }}>
       <div>
         <List ref={ref}>
           {props.children}
