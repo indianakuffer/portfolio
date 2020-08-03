@@ -8,7 +8,6 @@ const SkillContainer = styled.div`
   font-size: 20px;
   margin: 5px 0;
   color: #272946;
-  transition: font-weight 0.7s ease;
   &:hover {
     font-weight: bold;
   }

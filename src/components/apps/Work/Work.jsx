@@ -7,6 +7,7 @@ import { useTransition, animated } from 'react-spring'
 const WorkContainer = styled.div`
   position: relative;
   display: flex;
+  align-items: center;
   flex-flow: column;
   background-color: #a8bacc;
   width: 100%;
@@ -45,6 +46,8 @@ const Skills = styled(animated.div)`
   background-color: #a8bacc;
   padding: 0 20px;
   margin-top: 120px;
+  display: flex;
+  justify-content: center;
 `
 const ProjectGrid = styled.div`
   height: 100%;
@@ -61,6 +64,7 @@ const SkillsContainer = styled.div`
   border-radius: 15px;
   padding: 0 30px;
   margin-bottom: 50px;
+  max-width: fit-content;
 `
 const SkillCategory = styled.div`
   display: flex;
@@ -94,15 +98,11 @@ export default function Work() {
     leave: { transform: 'translate3d(120%,0,0)' },
   })
 
-  const toggleView = page => {
-    page === 'projects' ? setToggle(true) : setToggle(false)
-  }
-
   return (
     <WorkContainer>
       <Nav>
-        <ButtonProjects toggle={toggle} onClick={() => toggleView('projects')}>Projects</ButtonProjects>
-        <ButtonSkills toggle={toggle} onClick={() => toggleView('skills')}>Skills</ButtonSkills>
+        <ButtonProjects toggle={toggle} onClick={() => setToggle(true)}>Projects</ButtonProjects>
+        <ButtonSkills toggle={toggle} onClick={() => setToggle(false)}>Skills</ButtonSkills>
       </Nav>
       <div style={{ background: 'red', height: '100%' }}></div>
       {transitionProjects.map(({ item, key, props: animation }) => {
