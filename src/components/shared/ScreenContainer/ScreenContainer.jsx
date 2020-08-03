@@ -9,6 +9,7 @@ const Container = styled.main`
   align-items: ${props => props.align ? props.align : 'flex-start'};
   width: 100%;
   min-height: 100vh;
+  overflow: hidden;
 `
 
 export default function ScreenContainer(props) {
