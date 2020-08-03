@@ -82,10 +82,16 @@ const SkillCategory = styled.div`
 export default function Work() {
   let [toggle, setToggle] = useState(true)
 
-  let transition = useTransition(toggle, null, {
-    from: { transform: 'translate3d(100%,0,0)', position: 'absolute', width: '100%' },
+  let transitionProjects = useTransition(toggle, null, {
+    from: { transform: 'translate3d(-100%,0,0)', position: 'absolute', width: '100%' },
     enter: { transform: 'translate3d(0%,0,0)' },
     leave: { transform: 'translate3d(-120%,0,0)' },
+  })
+
+  let transitionSkills = useTransition(!toggle, null, {
+    from: { transform: 'translate3d(100%,0,0)', position: 'absolute', width: '100%' },
+    enter: { transform: 'translate3d(0%,0,0)' },
+    leave: { transform: 'translate3d(120%,0,0)' },
   })
 
   const toggleView = page => {
@@ -99,8 +105,8 @@ export default function Work() {
         <ButtonSkills toggle={toggle} onClick={() => toggleView('skills')}>Skills</ButtonSkills>
       </Nav>
       <div style={{ background: 'red', height: '100%' }}></div>
-      {transition.map(({ item, key, props: animation }) => {
-        return item ?
+      {transitionProjects.map(({ item, key, props: animation }) => {
+        return item && (
           <Projects style={animation}>
             <ProjectGrid >
               <WorkCard
@@ -143,8 +149,10 @@ export default function Work() {
                 github='https://github.com/indianakuffer/portfolio'
               />
             </ProjectGrid>
-          </Projects>
-          :
+          </Projects>)
+      })}
+      {transitionSkills.map(({ item, key, props: animation }) => {
+        return item && (
           <Skills style={animation}>
             <SkillsContainer>
               <SkillCategory>
@@ -178,7 +186,7 @@ export default function Work() {
                 <Skill name='Premiere Pro' imgPath='images/icons/premiere-pro.svg' />
               </SkillCategory>
             </SkillsContainer>
-          </Skills>
+          </Skills>)
       })}
     </WorkContainer>
   )
