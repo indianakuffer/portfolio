@@ -4,6 +4,7 @@ import Window from '../../shared/Window/Window'
 import Desktop from '../../Desktop/Desktop'
 import About from '../../apps/About/About'
 import Work from '../../apps/Work/Work'
+import Games from '../../apps/Games/Games'
 
 export default function Home() {
   let [mousePos, setMousePos] = useState({ x: null, y: null })
@@ -18,6 +19,12 @@ export default function Home() {
     'Work': {
       size: { x: window.innerWidth / 1.2, y: window.innerHeight / 1.2 },
       app: Work,
+      open: false,
+      focused: false
+    },
+    'Games': {
+      size: { x: window.innerWidth / 1.2, y: window.innerHeight / 1.2 },
+      app: Games,
       open: false,
       focused: false
     }

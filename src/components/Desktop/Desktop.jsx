@@ -35,7 +35,7 @@ export default function Desktop(props) {
       <Icon name='work' window='Work' image={'images/icons/work.svg'} initialPos={{ x: 30, y: 120 }} focused={focusedList.work} focusIcon={focusIcon} openWindow={props.openWindow} mousePos={props.mousePos} />
       <Icon name='photography' window='Work' image={'images/icons/camera.svg'} initialPos={{ x: 30, y: 200 }} focused={focusedList.photography} focusIcon={focusIcon} openWindow={props.openWindow} mousePos={props.mousePos} />
       <Icon name='resume' window='Work' image={'images/icons/resume.svg'} initialPos={{ x: 30, y: 280 }} focused={focusedList.resume} focusIcon={focusIcon} openWindow={props.openWindow} mousePos={props.mousePos} />
-      <Icon name='games' window='Work' image={'images/icons/gameboy.svg'} initialPos={{ x: 30, y: 360 }} focused={focusedList.games} focusIcon={focusIcon} openWindow={props.openWindow} mousePos={props.mousePos} />
+      <Icon name='games' window='Games' image={'images/icons/gameboy.svg'} initialPos={{ x: 30, y: 360 }} focused={focusedList.games} focusIcon={focusIcon} openWindow={props.openWindow} mousePos={props.mousePos} />
     </DesktopContainer>
   )
 }
