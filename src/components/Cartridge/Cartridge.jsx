@@ -40,8 +40,9 @@ const Sticker = styled.div`
   overflow: hidden;
   font-size: 36px;
   font-weight: 800;
-  border: 3px inset;
-  border-style: hidden inset inset inset;
+  box-shadow: inset 0 0 1px 1px rgba(0,0,0,0.3);
+  // border: 3px inset;
+  // border-style: hidden inset inset inset;
   div {
     user-select: none;
     transform: rotate(-20deg);

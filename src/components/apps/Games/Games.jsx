@@ -1,6 +1,6 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { useTransition, animated, config } from 'react-spring'
+import { useTransition, animated } from 'react-spring'
 import Cartridge from '../../Cartridge/Cartridge'
 
 const GamesContainer = styled.div`
@@ -24,7 +24,7 @@ const ScreenBorder = styled.div`
   max-height: 700px;
   max-width: 800px;
   top: 10px;
-  border-radius: 20px;
+  border-radius: 20px 20px 40px 20px;
   background: #303230;  
 `
 const RoundedContainer = styled.div`
@@ -104,6 +104,24 @@ const CartridgeContainer = styled.div`
   overflow-y: hidden;
   background: linear-gradient(rgba(0,0,0,0) 50%, rgba(0,0,0, 0.5));
 `
+const Device = styled.div`
+  position: absolute;
+  top: 0;
+  width: 1000px;
+  height: 100%;
+  background: #C0BDB9;
+`
+const Speaker = styled.div`
+  background-image: url('${require('../../../images/icons/speaker.svg')}');
+  box-shadow: inset 0 0 10px rgba(0,0,0,0.2);
+  background-size: contain;
+  background-repeat: no-repeat;
+  position: absolute;
+  left: -350px;
+  top: 400px;
+  height: 400px;
+  width: 300px;
+`
 
 const games = [
   {
@@ -161,8 +179,10 @@ export default function Games() {
 
   return (
     <GamesContainer>
+      <Device></Device>
       {transitions.map(({ item, props: animation, key }) => {
         return <ScreenBorder>
+          <Speaker></Speaker>
           <Power>
             <div></div>
             <span>BATTERY</span>

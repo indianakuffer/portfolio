@@ -12,8 +12,8 @@ const WindowContainer = styled(animated.div)`
   box-shadow: 2px 4px 8px rgba(0,0,0,0.25);
   overflow: hidden;
   opacity: ${props => props.focused ? 1 : 0.85};
-  background-color: white;
-  backdrop-filter: ${props => props.focused ? 'unset' : 'blur(8px)'};
+  background-color: transparent;
+  backdrop-filter: blur(8px);
   z-index: ${props => props.focused ? '1' : '0'};
 `
 const TopBar = styled.div`
@@ -45,7 +45,7 @@ const Contents = styled.div`
   top: 20px;
   overflow: auto;
   user-select: ${props => props.resizing || !props.focused ? 'none' : 'unset'};
-  background-color: ${props => props.backgroundColor ? props.backgroundColor : 'white'};
+  background: ${props => props.background ? props.background : 'white'};
 `
 const ResizeBoth = styled.div`
   position: absolute;
@@ -138,7 +138,7 @@ export default function Window(props) {
           <span>{props.title}</span>
         </BarTitle>
       </TopBar>
-      <Contents resizing={resizingWidth || resizingHeight} focused={props.focused} backgroundColor={props.backgroundColor}>
+      <Contents resizing={resizingWidth || resizingHeight} focused={props.focused} background={props.background}>
         {props.children}
       </Contents>
       <ResizeBoth
