@@ -36,7 +36,7 @@ export default function Home() {
     'Resume': {
       size: { x: window.innerWidth / 1.2, y: window.innerHeight / 1.2 },
       app: Resume,
-      background: 'rgba(0,0,0,0.2)',
+      background: `white`,
       open: false,
       focused: false
     },

@@ -5,10 +5,20 @@ import ResumeExperience from '../../ResumeExperience/ResumeExperience'
 const Container = styled.div`
   display: flex;
   flex-flow: column;
+  align-items: center;
+  background: url('https://i.imgur.com/ZLcIHPu.jpg');
+  height: fit-content;
 `
 const TwoCol = styled.div`
   display: grid;
   grid-template-columns: 1fr 1fr;
+`
+const Download = styled.a`
+  position: fixed;
+  top: 0;
+  right: 20px;
+  height: 100px;
+  width: 50px;
 `
 
 
@@ -60,6 +70,7 @@ My background in photography and game development allows me to bring a strong vi
           <ResumeExperience title='Game Development' location='Built several games using Gamemaker Studio, placing in community game jams.' year='' />
         </div>
       </TwoCol>
+      <Download href='www.indianakuffer.com' target='_blank' rel='noopener noreferrer'>Download</Download>
     </Container>
   )
 }
