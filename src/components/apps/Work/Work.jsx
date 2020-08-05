@@ -9,7 +9,6 @@ const WorkContainer = styled.div`
   display: flex;
   align-items: center;
   flex-flow: column;
-  background-color: #a8bacc;
   width: 100%;
   min-height: 100%;
   height: fit-content;
@@ -38,12 +37,10 @@ const ButtonSkills = styled.button`
   border-bottom: ${props => props.toggle ? 'none' : '3px solid black'};
 `
 const Projects = styled(animated.div)`
-  background-color: #a8bacc;
   padding: 0 20px;
   margin-top: 100px;
 `
 const Skills = styled(animated.div)`
-  background-color: #a8bacc;
   padding: 0 20px;
   margin-top: 120px;
   display: flex;

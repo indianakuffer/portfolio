@@ -19,12 +19,14 @@ export default function Home() {
     'Work': {
       size: { x: window.innerWidth / 1.2, y: window.innerHeight / 1.2 },
       app: Work,
+      backgroundColor: '#a8bacc',
       open: false,
       focused: false
     },
     'Games': {
       size: { x: window.innerWidth / 1.2, y: window.innerHeight / 1.2 },
       app: Games,
+      backgroundColor: '#130f0a',
       open: false,
       focused: false
     }
@@ -73,7 +75,7 @@ export default function Home() {
         const current = windowList[window]
         if (!current.open) return <></>
         const AppName = current.app
-        return <Window title={window} size={current.size} mousePos={mousePos} closeFunction={() => closeWindow(window)} focusFunction={() => focusWindow(window)} focused={current.focused} key={window}><AppName /></Window>
+        return <Window title={window} size={current.size} backgroundColor={current.backgroundColor} mousePos={mousePos} closeFunction={() => closeWindow(window)} focusFunction={() => focusWindow(window)} focused={current.focused} key={window}><AppName /></Window>
       })}
     </ScreenContainer>
   )

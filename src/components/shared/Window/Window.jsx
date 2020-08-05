@@ -45,6 +45,7 @@ const Contents = styled.div`
   top: 20px;
   overflow: auto;
   user-select: ${props => props.resizing || !props.focused ? 'none' : 'unset'};
+  background-color: ${props => props.backgroundColor ? props.backgroundColor : 'white'};
 `
 const ResizeBoth = styled.div`
   position: absolute;
@@ -134,7 +135,7 @@ export default function Window(props) {
           <span>{props.title}</span>
         </BarTitle>
       </TopBar>
-      <Contents resizing={resizingWidth || resizingHeight} focused={props.focused}>
+      <Contents resizing={resizingWidth || resizingHeight} focused={props.focused} backgroundColor={props.backgroundColor}>
         {props.children}
       </Contents>
       <ResizeBoth
