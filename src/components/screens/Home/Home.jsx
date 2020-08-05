@@ -26,7 +26,7 @@ export default function Home() {
     'Games': {
       size: { x: window.innerWidth / 1.2, y: window.innerHeight / 1.2 },
       app: Games,
-      backgroundColor: '#130f0a',
+      backgroundColor: '#C0BDB9',
       open: false,
       focused: false
     }

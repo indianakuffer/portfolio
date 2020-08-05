@@ -11,12 +11,8 @@ const Container = styled(animated.div)`
   margin: 10px 20px;
   border-radius: 3px 3px 0 0;
   cursor: pointer;
-  // transition: 0.2s transform ease;
-  // transform: translate3d(0,40px,0);
   flex-shrink: 0;
-  // &:hover {
-  //   transform: translate3d(0,0px,0);
-  // }
+  z-index: 2;
 `
 const Ridges = styled.div`
   height: 100%;

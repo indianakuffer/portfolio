@@ -54,14 +54,16 @@ const ResizeBoth = styled.div`
   width: 20px;
   height: 20px;
   cursor: nwse-resize;
-`
+  z-index: 3;
+  `
 const ResizeHeight = styled.div`
   position: absolute;
   bottom: 0;
   height: 10px;
   width: calc(100% - 20px);
   cursor: ns-resize;
-`
+  z-index: 3;
+  `
 const ResizeWidth = styled.div`
   position: absolute;
   top: 20px;
@@ -69,6 +71,7 @@ const ResizeWidth = styled.div`
   width: 10px;
   height: calc(100% - 20px - 20px);
   cursor: ew-resize;
+  z-index: 3;
 `
 
 export default function Window(props) {

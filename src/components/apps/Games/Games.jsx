@@ -1,26 +1,37 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import styled from 'styled-components'
 import { useTransition, animated, config } from 'react-spring'
 import Cartridge from '../../Cartridge/Cartridge'
 
 const GamesContainer = styled.div`
+  position: relative;
   width: 100%;
   min-height: 100%;
   display: flex;
   flex-flow: column;
   align-items: center;
-  padding: 40px;
+  padding: 20px;
   color: white;
-  background-color: black;
+  overflow: hidden;
+`
+const ScreenBorder = styled.div`
+  position: relative;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 85%;
+  width: 95%;
+  max-height: 700px;
+  max-width: 800px;
+  top: 10px;
+  border-radius: 20px;
+  background: #303230;  
 `
 const RoundedContainer = styled.div`
   position: relative;
-  height: 85%;
-  flex-shrink: 0;
-  width: 95%;
-  max-height: 700px;
-  max-width: 700px;
-  border-radius: 20px;
+  height: calc(100% - 80px);
+  width: calc(100% - 80px);
+  border-radius: 15px;
   overflow: hidden;
   display: flex;
   justify-content: center;
@@ -28,8 +39,6 @@ const RoundedContainer = styled.div`
   background-image: url('https://media1.giphy.com/media/3ohryjTWP5EyfaJB2o/giphy.gif');
   background-size: cover;
   background-position: center;
-  margin-bottom: 30px;
-  
 `
 const Game = styled(animated.div)`
   width: 100%;
@@ -53,6 +62,7 @@ const Tag = styled.a`
   border-radius: 10px 10px 0 0;
   height: 100px;
   transition: 0.2s transform ease;
+  z-index: 1;
   &:hover {
     transform: translate3d(0,-25px,0)
   }
@@ -66,29 +76,34 @@ const Tag = styled.a`
 `
 const Power = styled.div`
   position: absolute;
-  right: 0;
-  color: white;
+  top: 15px;
+  right: -80px;
+  color: #7b7b7b;
   display: flex;
   flex-flow: column;
   align-items: center;
-  font-size: 10px;
+  font-size: 14px;
+  font-weight: bold;
   div {
-    height: 5px;
-    width: 5px;
-    box-shadow: 0 0 5px 5px red;
+    height: 1px;
+    width: 1px;
+    box-shadow:
+    0 0 6px 6px #f99a9a,
+    0 0 5px 8px red;
     border-radius: 50%;
-    background: red;
-    margin-bottom: 5px;
+    background: #f99a9a;
+    margin-bottom: 12px;
   }
 `
 const CartridgeContainer = styled.div`
   position: absolute;
-  bottom: -20px;
+  bottom: 0px;
   display: flex;
   width: 100%;
   overflow-x: scroll;
+  overflow-y: hidden;
+  background: linear-gradient(rgba(0,0,0,0) 50%, rgba(0,0,0, 0.5));
 `
-
 
 const games = [
   {
@@ -111,28 +126,28 @@ const games = [
   },
   {
     id: 3,
-    image: 'https://img.itch.zone/aW1hZ2UvNjk4MTYwLzM4NTQ3OTYucG5n/347x500/omkLxW.png',
-    url: 'https://tuna.itch.io/outoftown',
-    title: 'Out of Town'
-  },
-  {
-    id: 4,
     image: 'https://img.itch.zone/aW1hZ2UvMTIwNDMyLzU1NDk5Mi5naWY=/original/xDdxr0.gif',
     url: 'https://indianakuffer.itch.io/cait-sidhe',
     title: 'Cait Sidhe'
   },
   {
-    id: 5,
+    id: 4,
     image: 'https://img.itch.zone/aW1hZ2UvMTcyMDA5LzgwMDA2OS5naWY=/347x500/a7TSr%2F.gif',
     url: 'https://indianakuffer.itch.io/fencer',
     title: 'Fencer'
+  },
+  {
+    id: 5,
+    image: 'https://img.itch.zone/aW1hZ2UvNjk4MTYwLzM4NTQ3OTYucG5n/347x500/omkLxW.png',
+    url: 'https://tuna.itch.io/outoftown',
+    title: 'Out of Town'
   },
   {
     id: 6,
     image: 'https://img.itch.zone/aW1hZ2UvMTA0OTgzLzQ5MTY5Ny5naWY=/original/rPLupL.gif',
     url: 'https://indianakuffer.itch.io/bread-and-circuses',
     title: 'Bread and Circuses'
-  },
+  }
 ]
 
 export default function Games() {
@@ -147,7 +162,11 @@ export default function Games() {
   return (
     <GamesContainer>
       {transitions.map(({ item, props: animation, key }) => {
-        return <>
+        return <ScreenBorder>
+          <Power>
+            <div></div>
+            <span>BATTERY</span>
+          </Power>
           <RoundedContainer>
             <Game key={key} background={item.image} style={animation}>
               <a href={item.url} target='_blank' rel='noreferrer noopener'><div></div></a>
@@ -157,12 +176,9 @@ export default function Games() {
               <span>View itch.io</span>
             </Tag>
           </RoundedContainer>
-        </>
+        </ScreenBorder>
       })}
-      <Power>
-        <div></div>
-        <span>BATTERY</span>
-      </Power>
+
       <CartridgeContainer>
         {games.map(game => {
           return <Cartridge onClick={() => set(game.id)} title={game.title}>
