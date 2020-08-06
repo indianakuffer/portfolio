@@ -97,12 +97,11 @@ const Power = styled.div`
 `
 const CartridgeContainer = styled.div`
   position: absolute;
-  bottom: 0px;
+  bottom: -30px;
   display: flex;
   width: 100%;
   overflow-x: scroll;
   overflow-y: hidden;
-  background: linear-gradient(rgba(0,0,0,0) 50%, rgba(0,0,0, 0.5));
 `
 const Device = styled.div`
   position: absolute;

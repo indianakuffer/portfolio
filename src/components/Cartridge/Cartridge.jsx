@@ -13,8 +13,10 @@ const Container = styled(animated.div)`
   cursor: pointer;
   flex-shrink: 0;
   z-index: 2;
+  box-shadow: 4px 8px 11px 3px rgba(0,0,0,0.5);
 `
 const Ridges = styled.div`
+  position: relative;
   height: 100%;
   width: 25%;
   border-left: 3px solid #656565;
@@ -26,6 +28,12 @@ const Ridges = styled.div`
     rgba(0,0,0,0.1) 5px,
     rgba(0,0,0,0.1) 10px
   );
+  div {
+    position: absolute;
+    width: 100%;
+    height: 22px;
+    background: rgba(0,0,0,0.1);
+  }
 `
 const Sticker = styled.div`
   display: flex;
@@ -55,7 +63,9 @@ export default function Cartridge(props) {
   const [{ y }, set] = useSpring(() => ({ y: 40 }))
   return (
     <Container onClick={props.onClick} style={{ transform: y.interpolate(y => `translate3d(0,${y}px,0)`) }} onMouseEnter={() => set({ y: 0 })} onMouseLeave={() => set({ y: 40 })}>
-      <Ridges></Ridges>
+      <Ridges>
+        <div></div>
+      </Ridges>
       <Sticker>
         <div>{props.title}</div>
       </Sticker>
