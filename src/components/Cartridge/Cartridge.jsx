@@ -32,7 +32,7 @@ const Ridges = styled.div`
     position: absolute;
     width: 100%;
     height: 22px;
-    background: rgba(0,0,0,0.1);
+    box-shadow: inset 0 0 8px rgba(0,0,0,0.3);
   }
 `
 const Sticker = styled.div`
