@@ -34,7 +34,7 @@ export default function Home() {
       focused: false
     },
     'Resume': {
-      size: { x: window.innerWidth / 1.2, y: window.innerHeight / 1.2 },
+      size: { x: window.innerWidth / 1.5, y: window.innerHeight / 1.2 },
       app: Resume,
       background: `white`,
       open: false,
