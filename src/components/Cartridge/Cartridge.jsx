@@ -9,7 +9,7 @@ const Container = styled(animated.div)`
   width: 162px;
   background: grey;
   margin: 10px 20px;
-  border-radius: 3px 3px 0 0;
+  border-radius: 5px 5px 0 0;
   cursor: pointer;
   flex-shrink: 0;
   z-index: 2;
@@ -49,8 +49,6 @@ const Sticker = styled.div`
   font-size: 36px;
   font-weight: 800;
   box-shadow: inset 0 0 1px 1px rgba(0,0,0,0.3);
-  // border: 3px inset;
-  // border-style: hidden inset inset inset;
   div {
     user-select: none;
     transform: rotate(-20deg);

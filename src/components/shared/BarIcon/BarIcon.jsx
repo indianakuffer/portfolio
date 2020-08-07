@@ -6,6 +6,9 @@ const Container = styled.div`
 `
 const Symbol = styled.div`
   background-image: url('${props => require('../../../' + props.image)}');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
   filter: brightness(0) invert(1);
   height: 16px;
   width: 16px;
@@ -14,9 +17,7 @@ const Symbol = styled.div`
 export default function BarIcon(props) {
   return (
     <Container onClick={props.onClick}>
-      {/* <a href={props.url} target='_blank' rel='noreferrer noopener'> */}
       <Symbol image={props.image}></Symbol>
-      {/* </a> */}
       {props.children}
     </Container>
   )

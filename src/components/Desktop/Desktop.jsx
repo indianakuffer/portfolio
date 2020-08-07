@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react'
 import styled from 'styled-components'
 import Icon from '../Icon/Icon'
 import SystemBar from '../SystemBar/SystemBar'
+import NotificationCenter from '../NotificationCenter/NotificationCenter'
 
 const DesktopContainer = styled.div`
   height: 100vh;
@@ -68,6 +69,7 @@ export default function Desktop(props) {
   return (
     <DesktopContainer onClick={() => { props.focusWindow(); focusIcon(); }}>
       <SystemBar />
+      <NotificationCenter />
       {iconList.map(icon => {
         return <Icon name={icon.name} window={icon.window} image={icon.image} initialPos={icon.initialPos} focused={focusedList[icon.name]} focusIcon={focusIcon} openWindow={props.openWindow} mousePos={props.mousePos} />
       })}

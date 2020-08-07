@@ -39,10 +39,11 @@ const Option = styled.div`
 export default function SystemBar() {
   let [showNameMenu, setShowNameMenu] = useState(false)
   let [showGithubMenu, setShowGithubMenu] = useState(false)
-  let [showClockMenu, setShowClockMenu] = useState(false)
+  let [showLinkedinMenu, setShowLinkedinMenu] = useState(false)
   let [showInstagramMenu, setShowInstagramMenu] = useState(false)
   let [showItchioMenu, setShowItchioMenu] = useState(false)
   let [showBatteryMenu, setShowBatteryMenu] = useState(false)
+  let [showClockMenu, setShowClockMenu] = useState(false)
   let [time, setTime] = useState(new Date())
 
   useEffect(() => {
@@ -85,6 +86,11 @@ export default function SystemBar() {
         <BarIcon image='images/icons/github.svg' onClick={() => { hideAll(); setShowGithubMenu(!showGithubMenu) }}>
           <DropDown showState={showGithubMenu}>
             <div><a href='https://github.com/indianakuffer/' target='_blank' rel='noreferrer noopener'>Take me to GitHub</a></div>
+          </DropDown>
+        </BarIcon>
+        <BarIcon image='images/icons/linkedin.svg' onClick={() => { hideAll(); setShowLinkedinMenu(!showLinkedinMenu) }}>
+          <DropDown showState={showLinkedinMenu}>
+            <div><a href='https://www.linkedin.com/in/indianakuffer/' target='_blank' rel='noreferrer noopener'>Take me to LinkedIn</a></div>
           </DropDown>
         </BarIcon>
         <BarIcon image='images/icons/instagram.svg' onClick={() => { hideAll(); setShowInstagramMenu(!showInstagramMenu) }}>

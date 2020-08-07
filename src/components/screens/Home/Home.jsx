@@ -10,6 +10,7 @@ import Resume from '../../apps/Resume/Resume'
 export default function Home() {
   let [mousePos, setMousePos] = useState({ x: null, y: null })
   let [count, forceRerender] = useState(0)
+  // Add new windows below, and import Component above
   let [windowList, setWindowList] = useState({
     'About - Indiana Kuffer': {
       size: { x: window.innerWidth / 1.2, y: window.innerHeight / 1.2 },
@@ -28,8 +29,6 @@ export default function Home() {
       size: { x: window.innerWidth / 1.2, y: window.innerHeight / 1.2 },
       app: Games,
       background: `#BEBCB7`,
-      // background: `url('https://media1.giphy.com/media/3ohryjTWP5EyfaJB2o/giphy.gif')`,
-      // backgroundColor: 'rgba(0,0,0,0.2)',
       open: false,
       focused: false
     },
@@ -43,6 +42,7 @@ export default function Home() {
   })
 
   useEffect(() => {
+    //track mouse position for dragging of windows and icons
     window.addEventListener("mousemove", updateMousePosition)
     return () => window.removeEventListener("mousemove", updateMousePosition)
   }, [])
@@ -52,6 +52,7 @@ export default function Home() {
   }
 
   const openWindow = (title) => {
+    // on window open, set window.open to true and window.focused to true without changing others
     focusWindow(title)
     const { [title]: current, ...rest } = windowList
     setWindowList({ ...rest, [title]: { ...current, open: true, focused: true } })
@@ -63,6 +64,7 @@ export default function Home() {
   }
 
   function focusWindow(title) {
+    // if title is provided, focus that window. otherwise unfocus all and rerender
     if (!title) {
       Object.keys(windowList).forEach(key => {
         windowList[key].focused = false

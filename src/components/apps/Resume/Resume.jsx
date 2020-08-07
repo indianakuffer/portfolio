@@ -185,7 +185,7 @@ My background in photography and game development allows me to bring a strong vi
             <ResumeExperience title='Game Development' location='Built several games using Gamemaker Studio, placing in community game jams.' year='' />
           </div>
         </TwoCol>
-        <Download href='http://www.indianakuffer.com' target='_blank' rel='noopener noreferrer'>
+        <Download href='https://drive.google.com/file/d/1gJyXcevNzScTAsEuCdUoRC4fEU5NN2_2/view?usp=sharing' target='_blank' rel='noopener noreferrer'>
           <span>Download</span>
           <Left></Left>
           <Right></Right>
