@@ -6,7 +6,7 @@ const Background = styled.div`
   display: flex;
   flex-flow: column;
   align-items: center;
-  background: url('https://i.imgur.com/ZLcIHPu.jpg');
+  background: url('https://i.imgur.com/737RZBl.jpg');
   background-size: 100% 100%;
   height: fit-content;
   width: 100%;
@@ -185,7 +185,7 @@ My background in photography and game development allows me to bring a strong vi
             <ResumeExperience title='Game Development' location='Built several games using Gamemaker Studio, placing in community game jams.' year='' />
           </div>
         </TwoCol>
-        <Download href='www.indianakuffer.com' target='_blank' rel='noopener noreferrer'>
+        <Download href='http://www.indianakuffer.com' target='_blank' rel='noopener noreferrer'>
           <span>Download</span>
           <Left></Left>
           <Right></Right>
