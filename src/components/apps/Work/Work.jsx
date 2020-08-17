@@ -138,6 +138,14 @@ export default function Work() {
                 github='https://github.com/indianakuffer/waste-watchers'
               />
               <WorkCard
+                title='Buoy'
+                image='https://i.imgur.com/2ktox0x.png'
+                url='https://buoy.netlify.app/'
+                text={`Excited? Worried? Hungry? Write down your thoughts and feelings and cast them out to sea, then sit and watch the thoughts of others slowly drift by. Connect, reflect, and share how you're doing without judgement. We promise.`}
+                techs={['ruby', 'rails', 'postgresql', 'nodejs', 'react', 'heroku', 'd3js', 'styled-components', 'react-spring.png']}
+                github='https://github.com/indianakuffer/buoy'
+              />
+              <WorkCard
                 title='Portfolio'
                 image='https://i.imgur.com/AMJAiAt.png'
                 url='http://www.indianakuffer.com'
