@@ -1,75 +1,95 @@
-import React, { useState } from 'react'
+import React, { useState, useEffect } from 'react'
 import { useHistory } from 'react-router-dom'
-import ScreenContainer from '../../shared/ScreenContainer/ScreenContainer'
-import styled from 'styled-components'
 import { useSpring, animated } from 'react-spring'
-import { easeCubicInOut } from 'd3-ease'
+import styled from 'styled-components'
+import codeBlock from '../../../code'
 
-const Welcome = styled(animated.button)`
+const CodeContainer = styled(animated.div)`
+  background: black;
+  width: 100vw;
+  min-height: 100vh;
+  font-family: monospace;
+`
+const Code = styled.div`
+  display: flex;
+  flex-flow: column;
+  font-size: 18px;
+  filter: blur(1px);
+  .landing-code2 {
+    position: absolute;
+    color: cyan;
+    transform: translateX(-2px);
+  }
+  .landing-code1 {
+    color: red;
+  }
+`
+const WipeContainer = styled.div`
+  position: fixed;
+  display: flex;
+  align-items: center;
+  width: 100vw;
+  height: 100vh;
+  z-index: 1;
+`
+const WhiteBlock = styled(animated.div)`
+  background: white;
+  width: 100vw;
   display: flex;
   justify-content: center;
   align-items: center;
-  background-color: transparent;
-  color: white;
-  font-size: 30px;
-  font-family: 'Playfair Display', serif;
-  font-weight: 600;
-  text-decoration: none;
-  border: none;
-  z-index: 10;
-  &:focus {
-    outline: none;
-  }
-  
-`
-const Blob = styled.div`
-  z-index: -5;
-  position: absolute;
-  background-image: url('${require('../../../images/blob.svg')}');
-  width: 300px;
-  height: 300px;
-  transition: filter 0.5s ease;
-  &:hover {
-    filter: ${props => props.growing ? 'unset' : 'brightness(0.9)'};
-  }
-  animation: 50s spin linear infinite;
-  @keyframes spin {
-    to {transform: rotate(360deg)}
-  }
-`
-const Background = styled(animated.div)`
-  position: absolute;
-  z-index: 0;
-  border-radius: 50%;
-  background-color: turquoise;
+  font-size: 70px;
 `
 
 export default function Landing() {
   const history = useHistory()
   let [nextPage, setNextPage] = useState(false)
-  let [growing, setGrowing] = useState(false)
+  let [showLine, setShowLine] = useState(0)
 
-  let orientation = window.innerHeight > window.innerWidth ? 'vh' : 'vw'
-
-  const springProps = useSpring({
-    width: growing ? `140${orientation}` : `0${orientation}`,
-    height: growing ? `140${orientation}` : `0${orientation}`,
-    config: { duration: 1300, easing: (t) => easeCubicInOut(t) },
-    onRest: () => { if (growing) setNextPage(true) }
+  const { spring } = useSpring({
+    spring: nextPage ? 100 : 0,
+    config: { mass: 1, tension: 320, friction: 60 },
+    onRest: () => next(),
   })
 
-  if (nextPage) {
-    setNextPage(false)
-    history.push('/home')
+  useEffect(() => {
+    let int = setInterval(func, 20)
+    return () => { clearInterval(int) }
+  }, [])
+
+  const func = () => {
+    setShowLine(showLine += 1)
+    if (showLine < codeBlock.length) { window.scrollTo(0, showLine * 50) }
+    if (showLine >= codeBlock.length && !nextPage) {
+      setInterval(() => setNextPage(true), 1000)
+    }
+  }
+
+  const next = () => {
+    if (nextPage) { history.push('/home') }
   }
 
   return (
-    <ScreenContainer align='center' justify='center'>
-      <Welcome onClick={() => setGrowing(true)}>
-        <p>Welcome</p>
-        <Blob growing={growing} />
-      </Welcome>
-      <Background style={springProps}></Background>
-    </ScreenContainer>
+    <CodeContainer >
+      <WipeContainer>
+        <WhiteBlock style={{ height: spring.interpolate(spring => `${spring}vh`) }}>Welcome.</WhiteBlock>
+      </WipeContainer>
+      <Code nextPage={nextPage}>
+        <div className='landing-code1'>
+          {codeBlock.map((line, idx) => {
+            if (showLine >= idx) {
+              return <div>{line}</div>
+            }
+          })}
+        </div>
+        <div className='landing-code2'>
+          {codeBlock.map((line, idx) => {
+            if (showLine >= idx) {
+              return <div>{line}</div>
+            }
+          })}
+        </div>
+      </Code>
+    </CodeContainer>
   )
 }

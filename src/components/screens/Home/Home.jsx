@@ -21,7 +21,7 @@ export default function Home() {
     'Work': {
       size: { x: window.innerWidth / 1.2, y: window.innerHeight / 1.2 },
       app: Work,
-      background: '#a8bacc',
+      background: '#204d79',
       open: false,
       focused: false
     },

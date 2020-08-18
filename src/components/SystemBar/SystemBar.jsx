@@ -67,6 +67,7 @@ export default function SystemBar() {
     setShowInstagramMenu(false)
     setShowItchioMenu(false)
     setShowBatteryMenu(false)
+    setShowLinkedinMenu(false)
   }
 
   return (

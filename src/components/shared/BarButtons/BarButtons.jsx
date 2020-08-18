@@ -36,9 +36,9 @@ const MaxButton = styled.div`
 export default function BarButtons(props) {
   return (
     <BarButtonContainer focused={props.focused}>
-      <CloseButton onClick={props.closeFunction}>x</CloseButton>
-      <MinButton>-</MinButton>
-      <MaxButton onClick={props.maxSize}>+</MaxButton>
+      <CloseButton onClick={props.closeFunction} />
+      <MinButton />
+      <MaxButton onClick={props.maxSize} />
     </BarButtonContainer>
   )
 }

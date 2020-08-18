@@ -18,6 +18,7 @@ const Nav = styled.div`
   justify-content: center;
   z-index: 1;
   button {
+    color: white;
     font-size: 60px;
     font-family: 'Playfair Display', times, serif;
     font-weight: 500;
@@ -30,11 +31,11 @@ const Nav = styled.div`
 `
 const ButtonProjects = styled.button`
   border: none;
-  border-bottom: ${props => props.toggle ? '3px solid black' : 'none'};
+  border-bottom: ${props => props.toggle ? '3px solid white' : 'none'};
 `
 const ButtonSkills = styled.button`
   border: none;
-  border-bottom: ${props => props.toggle ? 'none' : '3px solid black'};
+  border-bottom: ${props => props.toggle ? 'none' : '3px solid white'};
 `
 const Projects = styled(animated.div)`
   padding: 0 20px;
