@@ -1,57 +1,94 @@
-import React, { useState } from 'react'
-import { useHistory } from 'react-router-dom'
+import React, { useState, useEffect } from 'react'
 import ScreenContainer from '../../shared/ScreenContainer/ScreenContainer'
-import styled from 'styled-components'
-import { useSpring, animated } from 'react-spring'
-import { easeCubicOut } from 'd3-ease'
-
-const Welcome = styled(animated.button)`
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  background-color: turquoise;
-  color: white;
-  font-size: 30px;
-  width: 200px;
-  height: 200px;
-  border-radius: 50%;
-  text-decoration: none;
-  border: none;
-  z-index: 10;
-  &:focus {
-    outline: none;
-  }
-`
-const Background = styled(animated.div)`
-  position: absolute;
-  z-index: 0;
-  border-radius: 50%;
-  background-color: turquoise;
-`
+import Window from '../../shared/Window/Window'
+import Desktop from '../../Desktop/Desktop'
+import About from '../../apps/About/About'
+import Work from '../../apps/Work/Work'
+import Games from '../../apps/Games/Games'
+import Resume from '../../apps/Resume/Resume'
 
 export default function Home() {
-  const history = useHistory()
-  let [nextPage, setNextPage] = useState(false)
-  let [growing, setGrowing] = useState(false)
-
-  const orientation = window.innerHeight > window.innerWidth ? 'vh' : 'vw'
-
-  const props = useSpring({
-    width: growing ? `115${orientation}` : `0${orientation}`,
-    height: growing ? `115${orientation}` : `0${orientation}`,
-    config: { duration: 1300, easing: (t) => easeCubicOut(t) },
-    onRest: () => { if (growing) setNextPage(true) }
+  let [mousePos, setMousePos] = useState({ x: null, y: null })
+  let [count, forceRerender] = useState(0)
+  // Add new windows below, and import Component above
+  let [windowList, setWindowList] = useState({
+    'About - Indiana Kuffer': {
+      size: { x: window.innerWidth / 1.2, y: window.innerHeight / 1.2 },
+      app: About,
+      open: false,
+      focused: false
+    },
+    'Work': {
+      size: { x: window.innerWidth / 1.2, y: window.innerHeight / 1.2 },
+      app: Work,
+      background: '#204d79',
+      open: false,
+      focused: false
+    },
+    'Games': {
+      size: { x: window.innerWidth / 1.2, y: window.innerHeight / 1.2 },
+      app: Games,
+      background: `#BEBCB7`,
+      open: false,
+      focused: false
+    },
+    'Resume': {
+      size: { x: window.innerWidth / 1.5, y: window.innerHeight / 1.2 },
+      app: Resume,
+      background: `white`,
+      open: false,
+      focused: false
+    },
   })
 
-  if (nextPage) {
-    setNextPage(false)
-    history.push('/os')
+  useEffect(() => {
+    //track mouse position for dragging of windows and icons
+    window.addEventListener("mousemove", updateMousePosition)
+    return () => window.removeEventListener("mousemove", updateMousePosition)
+  }, [])
+
+  const updateMousePosition = (e) => {
+    setMousePos({ x: e.clientX, y: e.clientY })
   }
 
+  const openWindow = (title) => {
+    // on window open, set window.open to true and window.focused to true without changing others
+    focusWindow(title)
+    const { [title]: current, ...rest } = windowList
+    setWindowList({ ...rest, [title]: { ...current, open: true, focused: true } })
+  }
+
+  const closeWindow = (title) => {
+    const { [title]: current, ...rest } = windowList
+    setWindowList({ ...rest, [title]: { ...current, open: false } })
+  }
+
+  function focusWindow(title) {
+    // if title is provided, focus that window. otherwise unfocus all and rerender
+    if (!title) {
+      Object.keys(windowList).forEach(key => {
+        windowList[key].focused = false
+      })
+      forceRerender(count + 1)
+      return
+    }
+    let { [title]: chosen, ...rest } = windowList
+    Object.keys(rest).map(window => {
+      rest[window].focused = false
+    })
+    setWindowList({ ...rest, [title]: { ...chosen, focused: true } })
+  }
+
+
   return (
-    <ScreenContainer align='center' justify='center'>
-      <Welcome onClick={() => setGrowing(true)}>Welcome</Welcome>
-      <Background style={props}></Background>
+    <ScreenContainer>
+      <Desktop openWindow={openWindow} focusWindow={focusWindow} mousePos={mousePos} />
+      {Object.keys(windowList).map(window => {
+        const current = windowList[window]
+        if (!current.open) return <></>
+        const AppName = current.app
+        return <Window title={window} size={current.size} background={current.background} mousePos={mousePos} closeFunction={() => closeWindow(window)} focusFunction={() => focusWindow(window)} focused={current.focused} key={window}><AppName /></Window>
+      })}
     </ScreenContainer>
   )
 }

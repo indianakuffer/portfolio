@@ -3,10 +3,11 @@ import { Route, Switch } from 'react-router-dom'
 import { __RouterContext } from 'react-router'
 import { useTransition, animated } from 'react-spring'
 import { easeCubicInOut, easeCubicOut } from 'd3-ease'
-import Os from './components/screens/Os/Os'
 import Home from './components/screens/Home/Home'
+import Landing from './components/screens/Landing/Landing'
 
 function App() {
+
   const { location } = useContext(__RouterContext)
   const homeTransition = useTransition(location, location => location.pathname, {
     from: { opacity: 1 },
@@ -26,14 +27,14 @@ function App() {
       {homeTransition.map(({ item, props, key }) => (
         <animated.div key={key} style={props}>
           <Switch location={item}>
-            <Route exact path='/' component={Home} />
+            <Route exact path='/' component={Landing} />
           </Switch>
         </animated.div>
       ))}
       {transitions.map(({ item, props, key }) => (
         <animated.div key={key} style={props}>
           <Switch location={item}>
-            <Route exact path='/os' component={Os} />
+            <Route exact path='/home' component={Home} />
           </Switch>
         </animated.div>
       ))}
