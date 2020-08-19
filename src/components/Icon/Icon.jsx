@@ -18,6 +18,8 @@ const IconImage = styled.img`
   padding: 3px 5px;
   background-color: ${props => props.focused ? 'rgba(255,255,255,0.1)' : 'transparent'};
   // border: ${props => props.focused ? '1px solid blue' : 'none'};
+  user-select: none;
+  user-drag: none;
 `
 const IconText = styled.input`
   background-color: ${props => props.focused ? '#3258CB' : 'transparent'};
@@ -61,7 +63,7 @@ export default function Icon(props) {
       }}
       onMouseUp={() => setMouseDown(false)}
       onClick={e => e.stopPropagation()}>
-      <IconImage src={require('../../' + props.image)} onClick={handleClick} draggable='false' focused={props.focused} />
+      <IconImage src={require('../../' + props.image)} onClick={handleClick} onMouseDown={e => e.preventDefault()} draggable='false' focused={props.focused} />
       <IconText value={text} onChange={handleChange} width={text.length} focused={props.focused}></IconText>
     </IconContainer>
   )

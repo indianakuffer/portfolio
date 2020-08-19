@@ -14,14 +14,13 @@ const Code = styled.div`
   display: flex;
   flex-flow: column;
   font-size: 18px;
-  filter: blur(1px);
+  .landing-code1 {
+    color: red;
+  }
   .landing-code2 {
     position: absolute;
     color: cyan;
     transform: translateX(-2px);
-  }
-  .landing-code1 {
-    color: red;
   }
 `
 const WipeContainer = styled.div`
@@ -35,6 +34,7 @@ const WipeContainer = styled.div`
 const WhiteBlock = styled(animated.div)`
   background: white;
   width: 100vw;
+  overflow: hidden;
   display: flex;
   justify-content: center;
   align-items: center;
@@ -53,7 +53,7 @@ export default function Landing() {
   })
 
   useEffect(() => {
-    let int = setInterval(func, 20)
+    let int = setInterval(func, 10)
     return () => { clearInterval(int) }
   }, [])
 
@@ -72,7 +72,7 @@ export default function Landing() {
   return (
     <CodeContainer >
       <WipeContainer>
-        <WhiteBlock style={{ height: spring.interpolate(spring => `${spring}vh`) }}>Welcome.</WhiteBlock>
+        <WhiteBlock style={{ height: spring.interpolate(spring => `${spring}vh`) }} nextPage={nextPage}>Welcome.</WhiteBlock>
       </WipeContainer>
       <Code nextPage={nextPage}>
         <div className='landing-code1'>
