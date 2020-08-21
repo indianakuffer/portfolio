@@ -76,10 +76,10 @@ export default function SystemBar() {
         <Option>
           <div onClick={() => { hideAll(); setShowNameMenu(!showNameMenu) }}>Indiana Kuffer</div>
           <DropDown showState={showNameMenu}>
-            <div>About</div>
-            <div>Work</div>
-            <div>Photography</div>
-            <div>Contact</div>
+            <div><a href='https://github.com/indianakuffer/' target='_blank' rel='noreferrer noopener'>GitHub</a></div>
+            <div><a href='https://www.linkedin.com/in/indianakuffer/' target='_blank' rel='noreferrer noopener'>LinkedIn</a></div>
+            <div><a href='https://www.instagram.com/indianakuffer/' target='_blank' rel='noreferrer noopener'>Instagram</a></div>
+            <div><a href='https://indianakuffer.itch.io/' target='_blank' rel='noreferrer noopener'>Itch.io</a></div>
           </DropDown>
         </Option>
       </Left>

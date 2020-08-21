@@ -6,6 +6,7 @@ import About from '../../apps/About/About'
 import Work from '../../apps/Work/Work'
 import Games from '../../apps/Games/Games'
 import Resume from '../../apps/Resume/Resume'
+import Photography from '../../apps/Photography/Photography'
 
 export default function Home() {
   let [mousePos, setMousePos] = useState({ x: null, y: null })
@@ -35,6 +36,13 @@ export default function Home() {
     'Resume': {
       size: { x: window.innerWidth / 1.5, y: window.innerHeight / 1.2 },
       app: Resume,
+      background: `white`,
+      open: false,
+      focused: false
+    },
+    'Photography': {
+      size: { x: window.innerWidth / 1.2, y: window.innerHeight / 1.2 },
+      app: Photography,
       background: `white`,
       open: false,
       focused: false

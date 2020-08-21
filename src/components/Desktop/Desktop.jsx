@@ -7,7 +7,7 @@ import NotificationCenter from '../NotificationCenter/NotificationCenter'
 const DesktopContainer = styled.div`
   height: 100vh;
   width: 100vw;
-  background: url('https://images.unsplash.com/photo-1595252776520-61b1b51a7125');
+  background: url('https://i.imgur.com/2yLCG58.jpg');
   background-size: cover;
   background-position: center;
 `
@@ -27,7 +27,7 @@ const iconList = [
   },
   {
     name: 'photography',
-    window: 'Work',
+    window: 'Photography',
     image: 'images/icons/camera.svg',
     initialPos: { x: 30, y: 200 }
   },

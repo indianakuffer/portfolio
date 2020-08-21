@@ -84,9 +84,9 @@ export default function Window(props) {
   let [clickedOnce, setClickedOnce] = useState(false)
 
   const openSpring = useSpring({
-    from: { transform: 'scale(0)' },
+    from: { transform: 'scale(0.5)' },
     to: { transform: 'scale(1)' },
-    config: { clamp: false, friction: 24, tension: 300, easing: (t) => easeBackOut(t) }
+    config: { clamp: false, friction: 28, tension: 500, easing: (t) => easeBackOut(t) }
   })
 
   if (movingWindow) {
