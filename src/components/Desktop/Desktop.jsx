@@ -27,7 +27,7 @@ const iconList = [
   },
   {
     name: 'photography',
-    window: 'Work',
+    window: 'Photography',
     image: 'images/icons/camera.svg',
     initialPos: { x: 30, y: 200 }
   },
