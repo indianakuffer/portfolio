@@ -7,7 +7,7 @@ import NotificationCenter from '../NotificationCenter/NotificationCenter'
 const DesktopContainer = styled.div`
   height: 100vh;
   width: 100vw;
-  background: url('https://i.imgur.com/2yLCG58.jpg');
+  background: url('https://i.imgur.com/jnzkbCL.jpg');
   background-size: cover;
   background-position: center;
 `
