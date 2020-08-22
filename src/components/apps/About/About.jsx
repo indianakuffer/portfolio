@@ -19,13 +19,22 @@ const HeaderContainer = styled.div`
   margin-bottom: 80px;
   z-index: 1;
 `
+const HeaderTextContainer = styled.div`
+  align-self: flex-end;
+  margin-left: 30px;
+  padding-bottom: 28px;
+`
 const Header = styled.div`
-  font-size: 30px;
   font-weight: 600;
-  font-size: 56px;
+  font-size: 40px;
   font-family: 'Playfair Display', times, serif;
   align-self: center;
-  margin-left: 60px;
+`
+const Subheader = styled.div`
+  font-size: 20px;
+  font-weight: 600;
+  font-family: 'Playfair Display', times, serif;
+  align-self: center;
 `
 const Portrait = styled.img`
   height: 200px;
@@ -39,6 +48,9 @@ const Text = styled.div`
   font-size: 18px;
   z-index: 1;
   margin-bottom: 1em;
+  h1 {
+    font-family: 'Playfair Display', times, serif;
+  }
 `
 const Blob = styled.img`
   position: absolute;
@@ -53,12 +65,16 @@ export default function About() {
     <AboutContainer>
       <HeaderContainer>
         <Portrait src='https://i.imgur.com/RGYrBme.jpg' />
-        <Header>A bit<br />about me.</Header>
+        <HeaderTextContainer>
+          <Header>Hi, I'm Indiana</Header>
+          <Subheader>Full-stack Engineer | Frontend Developer</Subheader>
+        </HeaderTextContainer>
       </HeaderContainer>
       <Text>
+        <h1>About Me</h1>
         <p>I’m a highly curious and creative software engineer with three years experience in system administration and information technology. As a quick learner with a passion for making, I’m constantly looking for the next project to throw myself into.</p>
         <p>My background in photography and game development allows me to bring a strong visual design and focus on the user experience to my work. I strive to work in a highly technical environment that challenges my skill set and pushes me to grow further.</p>
-        <p>Like what you see? Reach out and let's get talking!</p>
+        <p><br />Like what you see? Reach out and let's get talking!</p>
       </Text>
       <ContactForm />
       <Blob height='300px' width='300px' top='80px' left='60%' src={require('../../../images/blob.svg')} />
