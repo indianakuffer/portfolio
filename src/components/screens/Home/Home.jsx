@@ -11,37 +11,39 @@ import Photography from '../../apps/Photography/Photography'
 export default function Home() {
   let [mousePos, setMousePos] = useState({ x: null, y: null })
   let [count, forceRerender] = useState(0)
+  let [windowDimensions, setWindowDimensions] = useState({ width: window.innerWidth, height: window.innerHeight })
+  let [wallpaper, setWallpaper] = useState('https://i.imgur.com/jnzkbCL.jpg')
   // Add new windows below, and import Component above
   let [windowList, setWindowList] = useState({
     'About - Indiana Kuffer': {
-      size: { x: window.innerWidth / 1.2, y: window.innerHeight / 1.2 },
+      size: { x: windowDimensions.width / 1.2, y: windowDimensions.height / 1.2 },
       app: About,
       open: false,
       focused: false
     },
     'Work': {
-      size: { x: window.innerWidth / 1.2, y: window.innerHeight / 1.2 },
+      size: { x: windowDimensions.width / 1.2, y: windowDimensions.height / 1.2 },
       app: Work,
       background: '#204d79',
       open: false,
       focused: false
     },
     'Games': {
-      size: { x: window.innerWidth / 1.2, y: window.innerHeight / 1.2 },
+      size: { x: windowDimensions.width / 1.2, y: windowDimensions.height / 1.2 },
       app: Games,
       background: `#BEBCB7`,
       open: false,
       focused: false
     },
     'Resume': {
-      size: { x: window.innerWidth / 1.5, y: window.innerHeight / 1.2 },
+      size: { x: windowDimensions.width / 1.5, y: windowDimensions.height / 1.2 },
       app: Resume,
       background: `white`,
       open: false,
       focused: false
     },
     'Photography': {
-      size: { x: window.innerWidth / 1.2, y: window.innerHeight / 1.2 },
+      size: { x: windowDimensions.width / 1.2, y: windowDimensions.height / 1.2 },
       app: Photography,
       background: `white`,
       open: false,
@@ -52,7 +54,11 @@ export default function Home() {
   useEffect(() => {
     //track mouse position for dragging of windows and icons
     window.addEventListener("mousemove", updateMousePosition)
-    return () => window.removeEventListener("mousemove", updateMousePosition)
+    window.addEventListener('resize', updateWindowDimensions)
+    return () => {
+      window.removeEventListener("mousemove", updateMousePosition)
+      window.removeEventListener('resize', updateWindowDimensions)
+    }
   }, [])
 
   const updateMousePosition = (e) => {
@@ -87,15 +93,31 @@ export default function Home() {
     setWindowList({ ...rest, [title]: { ...chosen, focused: true } })
   }
 
+  const updateWindowDimensions = () => {
+    setWindowDimensions({ width: window.innerWidth, height: window.innerHeight })
+  }
+
 
   return (
     <ScreenContainer>
-      <Desktop openWindow={openWindow} focusWindow={focusWindow} mousePos={mousePos} />
+      <Desktop openWindow={openWindow} focusWindow={focusWindow} mousePos={mousePos} wallpaper={wallpaper} />
       {Object.keys(windowList).map(window => {
         const current = windowList[window]
         if (!current.open) return <></>
         const AppName = current.app
-        return <Window title={window} size={current.size} background={current.background} mousePos={mousePos} closeFunction={() => closeWindow(window)} focusFunction={() => focusWindow(window)} focused={current.focused} key={window}><AppName /></Window>
+        return (
+          <Window
+            title={window}
+            size={current.size}
+            background={current.background}
+            mousePos={mousePos}
+            closeFunction={() => closeWindow(window)}
+            focusFunction={() => focusWindow(window)}
+            focused={current.focused}
+            key={window}>
+            <AppName setWallpaper={setWallpaper} />
+          </Window>
+        )
       })}
     </ScreenContainer>
   )
