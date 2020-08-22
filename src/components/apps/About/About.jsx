@@ -10,6 +10,7 @@ const AboutContainer = styled.div`
   align-items: center;
   padding: 20px;
   background-color: antiquewhite;
+  height: fit-content;
 `
 const HeaderContainer = styled.div`
   display: flex;
@@ -37,6 +38,7 @@ const Text = styled.div`
   max-width: 600px;
   font-size: 18px;
   z-index: 1;
+  margin-bottom: 1em;
 `
 const Blob = styled.img`
   position: absolute;
