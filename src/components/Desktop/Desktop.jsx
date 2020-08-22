@@ -7,7 +7,7 @@ import NotificationCenter from '../NotificationCenter/NotificationCenter'
 const DesktopContainer = styled.div`
   height: 100vh;
   width: 100vw;
-  background: url('https://i.imgur.com/jnzkbCL.jpg');
+  background: url('${props => props.wallpaper}');
   background-size: cover;
   background-position: center;
 `
@@ -67,7 +67,7 @@ export default function Desktop(props) {
   }
 
   return (
-    <DesktopContainer onClick={() => { props.focusWindow(); focusIcon(); }}>
+    <DesktopContainer wallpaper={props.wallpaper} onClick={() => { props.focusWindow(); focusIcon(); }}>
       <SystemBar />
       <NotificationCenter />
       {iconList.map(icon => {

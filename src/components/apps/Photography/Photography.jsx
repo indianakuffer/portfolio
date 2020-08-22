@@ -1,20 +1,42 @@
 import React, { useState } from 'react'
 import styled from 'styled-components'
-import { useTransition, useTrail, animated } from 'react-spring'
+import { useTrail, animated } from 'react-spring'
 
 const PhotoContainer = styled.div`
   position: relative;
   width: 100%;
   padding: 40px;
-  // background-color: green;
   column-count: 4;
   colum-gap: 1em;
   height: fit-content;
+`
+const ImageContainer = styled.div`
+  position: relative;
   img {
     margin: 0 0 1em 0;
     max-width: 100%;
     display: inline-block;
     user-drag: none;
+    user-select: none;
+    filter: brightness(0.9);
+    :hover {
+      filter: brightness(1.1);
+    }
+  }
+  button {
+    position: absolute;
+    bottom: 25px;
+    right: 5px;
+    background: url('${require('../../../images/icons/wallpaper.svg')}');
+    background-size: contain;
+    background-repeat: no-repeat;
+    height: 30px;
+    width: 30px;
+    border: none;
+    opacity: 0.7;
+    :hover {
+      opacity: 1;
+    }
   }
 `
 const Preview = styled(animated.div)`
@@ -29,6 +51,7 @@ const Preview = styled(animated.div)`
     height: 95%;
     transform: translateY(-10px);
     user-drag: none;
+    user-select: none;
   }
 `
 const images = [
@@ -54,19 +77,13 @@ const images = [
   'https://i.imgur.com/zPgqBj1.jpg'
 ]
 
-export default function Photography() {
+export default function Photography(props) {
   const [showPreview, setShowPreview] = useState(false)
 
   const trailAnim = useTrail(images.length, {
     to: { opacity: 1, x: 0 },
     from: { opacity: 0, x: 80 },
     config: { mass: 5, tension: 2000, friction: 200 }
-  })
-
-  const fadeIn = useTransition(showPreview, null, {
-    from: { opacity: 0 },
-    enter: { opacity: 1 },
-    leave: { opacity: 0, pointerEvents: 'none' }
   })
 
   const handleClick = (url) => {
@@ -77,20 +94,22 @@ export default function Photography() {
     <>
       <PhotoContainer>
         {trailAnim.map(({ x, ...rest }, index) => (
-          <animated.img
-            key={`image-${index}`}
-            src={images[index]}
-            style={{ ...rest, transform: x.interpolate(x => `translateY(${x}px)`) }}
-            onClick={() => handleClick(images[index])}
-          />
+          <ImageContainer>
+            <animated.img
+              key={`image-${index}`}
+              src={images[index]}
+              style={{ ...rest, transform: x.interpolate(x => `translateY(${x}px)`) }}
+              onClick={() => handleClick(images[index])}
+            />
+            <button onClick={() => props.setWallpaper(images[index])} />
+          </ImageContainer>
         ))}
       </PhotoContainer>
-      {fadeIn.map(({ item, key, props }) =>
-        item &&
-        <Preview style={props} onClick={() => setShowPreview(false)}>
+      {showPreview &&
+        <Preview onClick={() => setShowPreview(false)}>
           <img src={showPreview} />
         </Preview>
-      )}
+      }
     </>
   )
 }
