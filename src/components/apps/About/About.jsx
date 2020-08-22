@@ -1,5 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
+import ContactForm from '../../ContactForm/ContactForm'
 
 const AboutContainer = styled.div`
   position: relative;
@@ -57,6 +58,7 @@ export default function About() {
         <p>My background in photography and game development allows me to bring a strong visual design and focus on the user experience to my work. I strive to work in a highly technical environment that challenges my skill set and pushes me to grow further.</p>
         <p>Like what you see? Reach out and let's get talking!</p>
       </Text>
+      <ContactForm />
       <Blob height='300px' width='300px' top='80px' left='60%' src={require('../../../images/blob.svg')} />
       <Blob height='200px' width='200px' top='385px' left='36%' src={require('../../../images/blob.svg')} />
     </AboutContainer>
