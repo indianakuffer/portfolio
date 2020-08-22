@@ -20,6 +20,7 @@ const StyledForm = styled.form`
       width: 100%;
       border: none;
       padding: 0.4em;
+      font-size: 16px;
     }
   }
   button {
