@@ -28,6 +28,12 @@ const Nav = styled.div`
       outline: none;
     }
   }
+  @media only screen and (max-width: 600px) {
+    button {
+      font-size: 40px;
+      margin: 0 15px;
+    }
+  }
 `
 const ButtonProjects = styled.button`
   border: none;
@@ -63,6 +69,9 @@ const SkillsContainer = styled.div`
   padding: 0 30px;
   margin-bottom: 50px;
   max-width: fit-content;
+  @media only screen and (max-width: 600px) {
+    max-width: 95%;
+  }
 `
 const SkillCategory = styled.div`
   display: flex;

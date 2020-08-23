@@ -9,6 +9,9 @@ const PhotoContainer = styled.div`
   column-count: 4;
   colum-gap: 1em;
   height: fit-content;
+  @media only screen and (max-width: 600px) {
+    column-count: 2;
+  }
 `
 const ImageContainer = styled.div`
   position: relative;
@@ -23,20 +26,24 @@ const ImageContainer = styled.div`
       filter: brightness(1.1);
     }
   }
-  button {
-    position: absolute;
-    bottom: 25px;
-    right: 5px;
-    background: url('${require('../../../images/icons/wallpaper.svg')}');
-    background-size: contain;
-    background-repeat: no-repeat;
-    height: 30px;
-    width: 30px;
-    border: none;
-    opacity: 0.7;
-    :hover {
-      opacity: 1;
-    }
+`
+const WallpaperButton = styled(animated.button)`
+  position: absolute;
+  bottom: 25px;
+  right: 5px;
+  background: url('${require('../../../images/icons/wallpaper.svg')}');
+  background-size: contain;
+  background-repeat: no-repeat;
+  height: 30px;
+  width: 30px;
+  border: none;
+  opacity: 0.7;
+  :hover {
+    opacity: 1;
+  }
+  @media only screen and (max-width: 600px) {
+    height: 1.2em;
+    width: 1.2em;
   }
 `
 const Preview = styled(animated.div)`
@@ -52,6 +59,12 @@ const Preview = styled(animated.div)`
     transform: translateY(-10px);
     user-drag: none;
     user-select: none;
+  }
+  @media only screen and (max-width: 600px) {
+    img {
+      height: auto;
+      width: 100%;
+    }
   }
 `
 const images = [
@@ -99,15 +112,16 @@ export default function Photography(props) {
               key={`image-${index}`}
               src={images[index]}
               style={{ ...rest, transform: x.interpolate(x => `translateY(${x}px)`) }}
+              alt={`photography piece ${index}`}
               onClick={() => handleClick(images[index])}
             />
-            <button onClick={() => props.setWallpaper(images[index])} />
+            <WallpaperButton style={{ transform: x.interpolate(x => `translateY(${x}px)`) }} onClick={() => props.setWallpaper(images[index])} />
           </ImageContainer>
         ))}
       </PhotoContainer>
       {showPreview &&
         <Preview onClick={() => setShowPreview(false)}>
-          <img src={showPreview} />
+          <img src={showPreview} alt='set wallpaper icon' />
         </Preview>
       }
     </>

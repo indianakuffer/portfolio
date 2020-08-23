@@ -25,7 +25,11 @@ const ScreenBorder = styled.div`
   max-width: 800px;
   top: 10px;
   border-radius: 20px 20px 40px 20px;
-  background: #303230;  
+  background: #303230; 
+  @media only screen and (max-width: 600px) {
+    max-height: 285px;
+    max-width: 285px;
+  } 
 `
 const RoundedContainer = styled.div`
   position: relative;
@@ -39,6 +43,10 @@ const RoundedContainer = styled.div`
   background-image: url('https://media1.giphy.com/media/3ohryjTWP5EyfaJB2o/giphy.gif');
   background-size: cover;
   background-position: center;
+  @media only screen and (max-width: 600px) {
+    height: calc(100% - 50px);
+    width: calc(100% - 50px);
+  } 
 `
 const Game = styled(animated.div)`
   width: 100%;
@@ -102,6 +110,9 @@ const CartridgeContainer = styled.div`
   width: 100%;
   overflow-x: scroll;
   overflow-y: hidden;
+  @media only screen and (max-width: 600px) {
+    bottom: 0;
+  } 
 `
 const Device = styled.div`
   position: absolute;

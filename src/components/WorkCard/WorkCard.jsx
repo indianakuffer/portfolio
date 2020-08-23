@@ -18,6 +18,9 @@ const CardContainer = styled.div`
     transform: scale(1.03);
     box-shadow: 4px 9px 17px rgba(0,0,0,0.16);
   }
+  @media only screen and (max-width: 600px) {
+    height: auto;
+  }
 `
 const StyledDiv = styled.div`
   display: flex;
@@ -26,6 +29,7 @@ const StyledDiv = styled.div`
   align-items: center;
   width: 100%;
   height: 40%;
+  min-height: 150px;
   &:hover {
     span {opacity: 1};
   }
@@ -73,6 +77,9 @@ const TechContainer = styled.div`
   justify-content: flex-end;
   padding: 5px 10px;
   background-color: #f1f1f1;
+  @media only screen and (max-width: 600px) {
+    position: unset;
+  }
 `
 const Github = styled.a`
   color: grey;
