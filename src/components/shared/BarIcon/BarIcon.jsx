@@ -3,6 +3,9 @@ import styled from 'styled-components'
 
 const Container = styled.div`
   position: relative;
+  @media only screen and (max-width: 600px) {
+    display: none;
+  }
 `
 const Symbol = styled.div`
   background-image: url('${props => require('../../../' + props.image)}');

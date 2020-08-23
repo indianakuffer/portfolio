@@ -11,9 +11,12 @@ const AboutContainer = styled.div`
   padding: 20px;
   background-color: antiquewhite;
   height: fit-content;
+  overflow: hidden;
 `
 const HeaderContainer = styled.div`
   display: flex;
+  flex-flow: row wrap;
+  max-width: 100%;
   justify-content: center;
   margin-top: 40px;
   margin-bottom: 80px;

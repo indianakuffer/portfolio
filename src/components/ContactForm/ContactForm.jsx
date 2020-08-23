@@ -41,6 +41,9 @@ const Call = styled.div`
   font-family: 'Playfair Display', times, serif;
   font-size: 34px;
   margin-bottom: 0.6em;
+  @media only screen and (max-width: 600px) {
+    font-size: 32px;
+  }
 `
 
 export default function ContactForm() {

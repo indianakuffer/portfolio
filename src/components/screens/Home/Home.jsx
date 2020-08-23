@@ -22,28 +22,28 @@ export default function Home() {
       focused: false
     },
     'Work': {
-      size: { x: windowDimensions.width / 1.2, y: windowDimensions.height / 1.2 },
+      size: { x: windowDimensions.width / 1.1, y: windowDimensions.height / 1.1 },
       app: Work,
       background: '#204d79',
       open: false,
       focused: false
     },
     'Games': {
-      size: { x: windowDimensions.width / 1.2, y: windowDimensions.height / 1.2 },
+      size: { x: windowDimensions.width / 1.1, y: windowDimensions.height / 1.1 },
       app: Games,
       background: `#BEBCB7`,
       open: false,
       focused: false
     },
     'Resume': {
-      size: { x: windowDimensions.width / 1.5, y: windowDimensions.height / 1.2 },
+      size: { x: windowDimensions.width / 1.5, y: windowDimensions.height / 1.1 },
       app: Resume,
       background: `white`,
       open: false,
       focused: false
     },
     'Photography': {
-      size: { x: windowDimensions.width / 1.2, y: windowDimensions.height / 1.2 },
+      size: { x: windowDimensions.width / 1.1, y: windowDimensions.height / 1.1 },
       app: Photography,
       background: `white`,
       open: false,

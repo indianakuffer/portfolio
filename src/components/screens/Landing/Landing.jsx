@@ -14,14 +14,8 @@ const Code = styled.div`
   display: flex;
   flex-flow: column;
   font-size: 18px;
-  .landing-code1 {
-    color: red;
-  }
-  .landing-code2 {
-    position: absolute;
-    color: cyan;
-    transform: translateX(-2px);
-  }
+  color: cyan;
+  text-shadow: -2px 0 1px red;
 `
 const WipeContainer = styled.div`
   position: fixed;
@@ -40,11 +34,22 @@ const WhiteBlock = styled(animated.div)`
   align-items: center;
   font-size: 70px;
 `
+const Welcome = styled.div`
+  font-size: 70px;
+  position: fixed;
+  z-index: 1;
+  width: 100vw;
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+`
 
 export default function Landing() {
   const history = useHistory()
   let [nextPage, setNextPage] = useState(false)
   let [showLine, setShowLine] = useState(0)
+  const [showWelcome, setShowWelcome] = useState(false)
 
   const { spring } = useSpring({
     spring: nextPage ? 100 : 0,
@@ -62,6 +67,7 @@ export default function Landing() {
     if (showLine < codeBlock.length) { window.scrollTo(0, showLine * 50) }
     if (showLine >= codeBlock.length && !nextPage) {
       setInterval(() => setNextPage(true), 1000)
+      if (!showWelcome) { setShowWelcome(true) }
     }
   }
 
@@ -72,23 +78,15 @@ export default function Landing() {
   return (
     <CodeContainer >
       <WipeContainer>
-        <WhiteBlock style={{ height: spring.interpolate(spring => `${spring}vh`) }} nextPage={nextPage}>Welcome.</WhiteBlock>
+        <WhiteBlock style={{ height: spring.interpolate(spring => `${spring}vh`) }} nextPage={nextPage} />
       </WipeContainer>
+      {showWelcome && <Welcome>Welcome</Welcome>}
       <Code nextPage={nextPage}>
-        <div className='landing-code1'>
-          {codeBlock.map((line, idx) => {
-            if (showLine >= idx) {
-              return <div>{line}</div>
-            }
-          })}
-        </div>
-        <div className='landing-code2'>
-          {codeBlock.map((line, idx) => {
-            if (showLine >= idx) {
-              return <div>{line}</div>
-            }
-          })}
-        </div>
+        {codeBlock.map((line, idx) => {
+          if (showLine >= idx) {
+            return <div>{line}</div>
+          }
+        })}
       </Code>
     </CodeContainer>
   )
