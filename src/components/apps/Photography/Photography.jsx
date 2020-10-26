@@ -68,6 +68,8 @@ const Preview = styled(animated.div)`
   }
 `
 const images = [
+  'https://i.imgur.com/4m20dvD.jpg',
+  'https://i.imgur.com/f5Nurib.jpg',
   'https://i.imgur.com/jnzkbCL.jpg',
   'https://i.imgur.com/h4NIYNJ.jpg',
   'https://i.imgur.com/o75JfjF.jpg',
